@@ -121,6 +121,17 @@ class BarChartTab2 extends StatelessWidget {
               ],
             ),
             LineChartSeries(
+              name: 'Média',
+              color: Colors.orange,
+              data: [
+                LineChartData(label: 'Seg', value: 27),
+                LineChartData(label: 'Ter', value: 25),
+                LineChartData(label: 'Qua', value: 21),
+                LineChartData(label: 'Qui', value: 23),
+                LineChartData(label: 'Sex', value: 29),
+              ],
+            ),
+            LineChartSeries(
               name: 'Mínima',
               color: Colors.blue,
               data: [

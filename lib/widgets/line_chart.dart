@@ -126,6 +126,35 @@ class _LineChartState extends State<LineChart> {
             },
           ),
         ),
+        if (widget.series.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 16,
+              runSpacing: 8,
+              children: widget.series.map((s) {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 12,
+                      height: 12,
+                      margin: const EdgeInsets.only(right: 6),
+                      decoration: BoxDecoration(
+                        color: s.color,
+                        shape: BoxShape.rectangle,
+                      ),
+                    ),
+                    Text(
+                      s.name,
+                      style: const TextStyle(fontSize: 13),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+          ),
       ],
     );
   }
