@@ -1,6 +1,4 @@
-# BarChart Widget – easy_flutter_charts
-
-O `BarChart` é um widget altamente personalizável para renderização de gráficos de barras no Flutter. Ele permite representar visualmente dados numéricos com rótulos personalizáveis nos eixos X e Y, suporte a interações (tap) e tooltips.
+# easy_flutter_charts
 
 ## 📦 Instalação
 
