@@ -251,8 +251,10 @@ class BarChartPainter extends CustomPainter {
       );
       textPainter.layout();
 
-      // Desenha o número no lado esquerdo do gráfico
-      textPainter.paint(canvas, Offset(0, y - textPainter.height / 2));
+      textPainter.paint(
+        canvas,
+        Offset(yAxisX - textPainter.width - 6, y - textPainter.height / 2),
+      );
 
       // Traço pequeno na linha do eixo Y (marca de divisão)
       canvas.drawLine(

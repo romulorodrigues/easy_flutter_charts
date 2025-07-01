@@ -1,3 +1,4 @@
+import 'package:easy_flutter_charts/models/line_chart_series.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_flutter_charts/easy_flutter_charts.dart';
 
@@ -28,8 +29,8 @@ class ChartTabsPage extends StatelessWidget {
           title: const Text('Exemplos de Gráficos'),
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'Bar'),
-              Tab(text: 'Bar 2'),
+              Tab(text: 'Bar Chart'),
+              Tab(text: 'Line Chart'),
             ],
           ),
         ),
@@ -51,7 +52,7 @@ class BarChartTab1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 300,
+        height: 400,
         width: 600,
         child: BarChart(
           title: 'Vendas por país',
@@ -72,11 +73,11 @@ class BarChartTab1 extends StatelessWidget {
             ),
             BarChartData(label: 'China', value: 25.5, color: Colors.green),
           ],
-          yAxisLabelStyle: const TextStyle(fontSize: 10, color: Colors.red),
-          xAxisLabelStyle: const TextStyle(
-            fontSize: 10,
-            fontWeight: FontWeight.bold,
-          ),
+          // yAxisLabelStyle: const TextStyle(fontSize: 10, color: Colors.red),
+          // xAxisLabelStyle: const TextStyle(
+          //   fontSize: 10,
+          //   fontWeight: FontWeight.bold,
+          // ),
           yAxisLabelFormatter: (v) => 'R\$ ${v.toStringAsFixed(2)}',
           xAxisLabelFormatter: (label) => label.toString().toUpperCase(),
           // yAxisMargin: 60,
@@ -100,27 +101,43 @@ class BarChartTab2 extends StatelessWidget {
       child: SizedBox(
         height: 300,
         width: 600,
-        child: BarChart(
-          title: 'Vendas',
+        child: LineChart(
+          title: 'Temperatura Diária',
           titleStyle: const TextStyle(
             fontSize: 20,
             color: Colors.black,
             fontWeight: FontWeight.w600,
           ),
-          data: [
-            BarChartData(label: 'Jan', value: 50, color: Colors.blue),
-            BarChartData(label: 'Fev', value: 80, color: Colors.red),
-            BarChartData(label: 'Mar', value: 30, color: Colors.green),
-            BarChartData(label: 'Abr', value: 70, color: Colors.orange),
-            BarChartData(label: 'Mai', value: 100, color: Colors.orange),
-            BarChartData(label: 'Jun', value: 25.5, color: Colors.green),
-            BarChartData(label: 'Jul', value: 35.5, color: Colors.green),
-            BarChartData(label: 'Ago', value: 65.5, color: Colors.green),
-            BarChartData(label: 'Set', value: 95.5, color: Colors.green),
-            BarChartData(label: 'Out', value: 28.5, color: Colors.green),
-            BarChartData(label: 'Nov', value: 125.5, color: Colors.green),
-            BarChartData(label: 'Dez', value: 3.5, color: Colors.green),
+          series: [
+            LineChartSeries(
+              name: 'Máxima',
+              color: Colors.red,
+              data: [
+                LineChartData(label: 'Seg', value: 30),
+                LineChartData(label: 'Ter', value: 32),
+                LineChartData(label: 'Qua', value: 31),
+                LineChartData(label: 'Qui', value: 33),
+                LineChartData(label: 'Sex', value: 29),
+              ],
+            ),
+            LineChartSeries(
+              name: 'Mínima',
+              color: Colors.blue,
+              data: [
+                LineChartData(label: 'Seg', value: 20),
+                LineChartData(label: 'Ter', value: 21),
+                LineChartData(label: 'Qua', value: 19),
+                LineChartData(label: 'Qui', value: 22),
+                LineChartData(label: 'Sex', value: 18),
+              ],
+            ),
           ],
+          yAxisLabelFormatter: (v) => '${v.toStringAsFixed(0)}°C',
+          xAxisLabelFormatter: (label) => label.toString(),
+          showDots: true,
+          showGrid: true,
+          // lineTooltipBuilder: (point) =>
+          //     'Dia ${point.label}: ${point.value} °C',
         ),
       ),
     );
