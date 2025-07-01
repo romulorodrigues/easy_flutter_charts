@@ -174,7 +174,7 @@ class PieChartTab extends StatelessWidget {
           PieChartData(label: 'EUA', value: 150, color: Colors.orange),
         ],
         aspectRatio: 3,
-        // legendPosition: LegendPosition.top,
+        // legendPosition: LegendPosition.bottom,
         pieTooltipBuilder: (data) =>
             '${data.label}: ${data.value.toStringAsFixed(1)} unidades',
       ),

@@ -96,7 +96,7 @@ class _PieChartState extends State<PieChart> {
           children: [
             if (widget.title != null)
               Text(widget.title!, style: widget.titleStyle),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             legend,
             const SizedBox(height: 8),
             chart,
@@ -109,6 +109,7 @@ class _PieChartState extends State<PieChart> {
           children: [
             if (widget.title != null)
               Text(widget.title!, style: widget.titleStyle),
+            const SizedBox(height: 12),
             chart,
             const SizedBox(height: 8),
             legend,
@@ -163,19 +164,31 @@ class _PieChartState extends State<PieChart> {
     final distanceFromCenter = sqrt(dx * dx + dy * dy);
     final radius = min(size.width, size.height) / 2;
 
-    // Se estiver fora do círculo, ignora
     if (distanceFromCenter > radius) return null;
 
+    // ângulo do ponto (de 0 a 2π)
     final angle = (atan2(dy, dx) + 2 * pi) % (2 * pi);
+
     final total = widget.data.fold<double>(0, (sum, item) => sum + item.value);
-    double startAngle = -pi / 2;
+    double startAngle = -pi / 2; // começa no topo
 
     for (int i = 0; i < widget.data.length; i++) {
       final sweep = (widget.data[i].value / total) * 2 * pi;
-      if (angle >= startAngle && angle < startAngle + sweep) {
+      final endAngle = startAngle + sweep;
+
+      // normaliza para 0..2π
+      final normalizedStart = (startAngle + 2 * pi) % (2 * pi);
+      final normalizedEnd = (endAngle + 2 * pi) % (2 * pi);
+
+      final isWithin = normalizedStart < normalizedEnd
+          ? angle >= normalizedStart && angle < normalizedEnd
+          : angle >= normalizedStart || angle < normalizedEnd;
+
+      if (isWithin) {
         return i;
       }
-      startAngle += sweep;
+
+      startAngle = endAngle;
     }
 
     return null;
