@@ -19,7 +19,7 @@ class PieChart extends StatefulWidget {
     required this.data,
     this.title,
     this.titleStyle,
-    this.aspectRatio = 1.0,
+    this.aspectRatio = 3.0,
     this.legendPosition = LegendPosition.bottom,
     this.pieTooltipBuilder,
   }) : super(key: key);
