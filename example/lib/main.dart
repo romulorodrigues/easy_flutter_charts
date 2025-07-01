@@ -23,7 +23,7 @@ class ChartTabsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Exemplos de Gráficos'),
@@ -31,13 +31,15 @@ class ChartTabsPage extends StatelessWidget {
             tabs: [
               Tab(text: 'Bar Chart'),
               Tab(text: 'Line Chart'),
+              Tab(text: 'Pie Chart'),
             ],
           ),
         ),
         body: const TabBarView(
           children: [
-            BarChartTab1(),
-            BarChartTab2(),
+            BarChartTab(),
+            LineChartTab(),
+            PieChartTab(),
           ],
         ),
       ),
@@ -45,8 +47,8 @@ class ChartTabsPage extends StatelessWidget {
   }
 }
 
-class BarChartTab1 extends StatelessWidget {
-  const BarChartTab1({super.key});
+class BarChartTab extends StatelessWidget {
+  const BarChartTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +94,8 @@ class BarChartTab1 extends StatelessWidget {
   }
 }
 
-class BarChartTab2 extends StatelessWidget {
-  const BarChartTab2({super.key});
+class LineChartTab extends StatelessWidget {
+  const LineChartTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -152,6 +154,29 @@ class BarChartTab2 extends StatelessWidget {
           // lineTooltipBuilder: (point) =>
           //     'Dia ${point.label}: ${point.value} °C',
         ),
+      ),
+    );
+  }
+}
+
+class PieChartTab extends StatelessWidget {
+  const PieChartTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: PieChart(
+        title: 'Distribuição de Vendas',
+        data: [
+          PieChartData(label: 'Brasil', value: 60, color: Colors.green),
+          PieChartData(label: 'Alemanha', value: 76, color: Colors.blue),
+          PieChartData(label: 'Japão', value: 90, color: Colors.red),
+          PieChartData(label: 'EUA', value: 150, color: Colors.orange),
+        ],
+        aspectRatio: 3,
+        // legendPosition: LegendPosition.top,
+        pieTooltipBuilder: (data) =>
+            '${data.label}: ${data.value.toStringAsFixed(1)} unidades',
       ),
     );
   }

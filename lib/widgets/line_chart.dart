@@ -80,8 +80,7 @@ class _LineChartState extends State<LineChart> {
                   });
 
                   if (_selectedPoints.isNotEmpty && widget.onPointTap != null) {
-                    widget.onPointTap!(
-                        _selectedPoints.first.point); // envia o primeiro
+                    widget.onPointTap!(_selectedPoints.first.point);
                   }
                 },
                 child: Stack(
