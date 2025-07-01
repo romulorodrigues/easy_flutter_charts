@@ -17,7 +17,9 @@ class LineChart extends StatefulWidget {
   final double xAxisMargin;
   final bool showDots;
   final bool showGrid;
-  final String Function(LineChartData)? lineTooltipBuilder;
+  final String Function(LineChartData data)? lineTooltipBuilder;
+  final double dotRadius;
+  final double strokeWidth;
 
   const LineChart({
     Key? key,
@@ -35,6 +37,8 @@ class LineChart extends StatefulWidget {
     this.showDots = true,
     this.showGrid = true,
     this.lineTooltipBuilder,
+    this.dotRadius = 4.0,
+    this.strokeWidth = 2.0,
   }) : super(key: key);
 
   @override
@@ -43,7 +47,7 @@ class LineChart extends StatefulWidget {
 
 class _LineChartState extends State<LineChart> {
   Offset? _tapPosition;
-  LineChartData? _selectedPoint;
+  List<({LineChartSeries serie, LineChartData point})> _selectedPoints = [];
 
   double tooltipWidth = 160.0;
   double tooltipHeight = 50.0;
@@ -68,15 +72,16 @@ class _LineChartState extends State<LineChart> {
                 onTapDown: (details) {
                   setState(() {
                     _tapPosition = details.localPosition;
-                    _selectedPoint = _detectTappedPoint(
+                    _selectedPoints = _detectTappedPoints(
                       details.localPosition,
                       constraints.maxWidth,
                       constraints.maxHeight,
                     );
                   });
 
-                  if (_selectedPoint != null && widget.onPointTap != null) {
-                    widget.onPointTap!(_selectedPoint!);
+                  if (_selectedPoints.isNotEmpty && widget.onPointTap != null) {
+                    widget.onPointTap!(
+                        _selectedPoints.first.point); // envia o primeiro
                   }
                 },
                 child: Stack(
@@ -94,9 +99,11 @@ class _LineChartState extends State<LineChart> {
                         xAxisMargin: widget.xAxisMargin,
                         showDots: widget.showDots,
                         showGrid: widget.showGrid,
+                        dotRadius: widget.dotRadius,
+                        strokeWidth: widget.strokeWidth,
                       ),
                     ),
-                    if (_selectedPoint != null && _tapPosition != null)
+                    if (_selectedPoints.isNotEmpty && _tapPosition != null)
                       Positioned(
                         left: () {
                           final dx = _tapPosition!.dx;
@@ -116,7 +123,7 @@ class _LineChartState extends State<LineChart> {
                           color: Colors.transparent,
                           child: SizedBox(
                             width: tooltipWidth,
-                            child: _getDefaultTooltip(_selectedPoint!),
+                            child: _getGroupedTooltip(_selectedPoints),
                           ),
                         ),
                       ),
@@ -159,32 +166,10 @@ class _LineChartState extends State<LineChart> {
     );
   }
 
-  Widget _getDefaultTooltip(LineChartData point) {
-    final label = point.label;
-    final labelText =
-        (label is List<String>) ? label.join(' ') : label.toString();
-
-    // Custom
-    if (widget.lineTooltipBuilder != null) {
-      return Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF5F5F5),
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 4,
-              offset: Offset(2, 2),
-            ),
-          ],
-        ),
-        child: Text(
-          widget.lineTooltipBuilder!(point),
-          style: const TextStyle(fontSize: 12, color: Colors.black87),
-        ),
-      );
-    }
+  Widget _getGroupedTooltip(
+    List<({LineChartSeries serie, LineChartData point})> points,
+  ) {
+    final labelText = points.first.point.label.toString();
 
     return Container(
       padding: const EdgeInsets.all(8),
@@ -218,43 +203,81 @@ class _LineChartState extends State<LineChart> {
             color: Colors.grey.shade300,
           ),
           const SizedBox(height: 6),
-          Text(
-            '${point.value}',
-            style: const TextStyle(fontSize: 12),
-          ),
+          ...points.map((e) {
+            final custom = widget.lineTooltipBuilder?.call(e.point);
+            if (custom != null) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    margin: const EdgeInsets.only(right: 6),
+                    decoration: BoxDecoration(
+                      color: e.serie.color,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      custom,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            return Row(
+              children: [
+                Container(
+                  width: 10,
+                  height: 10,
+                  margin: const EdgeInsets.only(right: 6),
+                  decoration: BoxDecoration(
+                    color: e.serie.color,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Text(
+                  '${e.serie.name}: ${e.point.value.toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 12),
+                ),
+              ],
+            );
+          }),
         ],
       ),
     );
   }
 
-  LineChartData? _detectTappedPoint(
+  List<({LineChartSeries serie, LineChartData point})> _detectTappedPoints(
       Offset position, double width, double height) {
-    final allPoints = widget.series.expand((s) => s.data).toList();
-    final yValues = allPoints.map((d) => d.value);
-    final yMax =
-        yValues.isEmpty ? 1.0 : yValues.reduce((a, b) => a > b ? a : b);
-    final yMin =
-        yValues.isEmpty ? 0.0 : yValues.reduce((a, b) => a < b ? a : b);
-    final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
+    final result = <({LineChartSeries serie, LineChartData point})>[];
     final chartHeight = height - widget.xAxisMargin;
     final chartWidth = width - widget.yAxisMargin;
 
-    for (final series in widget.series) {
-      final points = series.data;
-      final double xStep =
+    for (final serie in widget.series) {
+      final points = serie.data;
+      final xStep =
           points.length > 1 ? chartWidth / (points.length - 1) : chartWidth;
 
       for (int i = 0; i < points.length; i++) {
         final x = widget.yAxisMargin + xStep * i;
+        final yValues = widget.series.expand((s) => s.data).map((p) => p.value);
+        final yMin = yValues.reduce((a, b) => a < b ? a : b);
+        final yMax = yValues.reduce((a, b) => a > b ? a : b);
+        final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
         final y =
             chartHeight - ((points[i].value - yMin) / yRange) * chartHeight;
 
-        if ((Offset(x, y) - position).distance < 12) {
-          return points[i];
+        final pointPos = Offset(x, y);
+        if ((position - pointPos).distance < 12) {
+          result.add((serie: serie, point: points[i]));
         }
       }
     }
 
-    return null;
+    return result;
   }
 }

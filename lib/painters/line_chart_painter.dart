@@ -13,6 +13,8 @@ class LineChartPainter extends CustomPainter {
   final double xAxisMargin;
   final bool showDots;
   final bool showGrid;
+  final double dotRadius;
+  final double strokeWidth;
 
   LineChartPainter({
     required this.series,
@@ -25,6 +27,8 @@ class LineChartPainter extends CustomPainter {
     this.xAxisMargin = 30,
     this.showDots = true,
     this.showGrid = true,
+    this.dotRadius = 4.0,
+    this.strokeWidth = 2.0,
   });
 
   @override
@@ -72,7 +76,7 @@ class LineChartPainter extends CustomPainter {
     // Desenha as séries
     for (final s in series) {
       paint.color = s.color;
-      paint.strokeWidth = 2;
+      paint.strokeWidth = strokeWidth;
 
       final points = <Offset>[];
       for (int i = 0; i < s.data.length; i++) {
@@ -84,7 +88,7 @@ class LineChartPainter extends CustomPainter {
         // Ponto
         if (showDots) {
           final dotPaint = Paint()..color = s.color;
-          canvas.drawCircle(Offset(x, y), 4, dotPaint);
+          canvas.drawCircle(Offset(x, y), dotRadius, dotPaint);
         }
       }
 
