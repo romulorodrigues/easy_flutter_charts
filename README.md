@@ -1,5 +1,19 @@
 # easy_flutter_charts
 
+easy_flutter_charts é uma biblioteca simples, leve e personalizável para criação de gráficos em Flutter. Ela oferece componentes de gráficos de barras, linhas e pizza, ideais para dashboards, visualizações estatísticas entre outros. Você pode integrar visualizações de dados elegantes e responsivas em poucos minutos.
+
+✨ Destaques
+
+📈 Gráficos de Linha.
+
+📊 Gráficos de Barra.
+
+🥧 Gráficos de Pizza.
+
+🎨 Estilização fácil de títulos, rótulos e eixos.
+
+🧩 Suporte a tooltips personalizados via builder.
+
 ## 📦 Instalação
 
 Adicione o `easy_flutter_charts` ao seu `pubspec.yaml`:
@@ -55,7 +69,7 @@ dependencies:
 | ------------------- | -------------------------------- | ----------------------------------------------------------------- |
 | `data`              | `List<PieChartData>`             | Lista com os dados do gráfico.                                    |
 | `title`             | `String?`                        | Título do gráfico.                                                |
-| `titleStyle`        | `TextStyle?`                     | Estilo aplicado ao título.                                        |
-| `aspectRatio`       | `double`                         | Relação largura/altura do gráfico. Padrão: `3.0`.                 |
-| `legendPosition`    | `LegendPosition`                 | Posição da legenda: `top`, `bottom`. Padrão: `bottom`.            |
+| `titleStyle`        | `TextStyle?`                     | Estilo do texto do título.                                        |
+| `aspectRatio`       | `double`                         | Relação largura/altura do gráfico. (padrão: `3.0`).               |
+| `legendPosition`    | `LegendPosition`                 | Posição da legenda: `top`, `bottom`. (padrão: `bottom`).          |
 | `pieTooltipBuilder` | `String Function(PieChartData)?` | Função para personalizar o conteúdo do tooltip ao passar o mouse. |
