@@ -68,65 +68,87 @@ class _LineChartState extends State<LineChart> {
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              return GestureDetector(
-                onTapDown: (details) {
+              return MouseRegion(
+                onHover: (event) {
+                  final localPosition =
+                      (context.findRenderObject() as RenderBox)
+                          .globalToLocal(event.position);
                   setState(() {
-                    _tapPosition = details.localPosition;
+                    _tapPosition = localPosition;
                     _selectedPoints = _detectTappedPoints(
-                      details.localPosition,
+                      localPosition,
                       constraints.maxWidth,
                       constraints.maxHeight,
                     );
                   });
-
-                  if (_selectedPoints.isNotEmpty && widget.onPointTap != null) {
-                    widget.onPointTap!(_selectedPoints.first.point);
-                  }
                 },
-                child: Stack(
-                  children: [
-                    CustomPaint(
-                      size: Size.infinite,
-                      painter: LineChartPainter(
-                        series: widget.series,
-                        spacing: widget.spacing,
-                        xAxisLabelStyle: widget.xAxisLabelStyle,
-                        yAxisLabelStyle: widget.yAxisLabelStyle,
-                        yAxisLabelFormatter: widget.yAxisLabelFormatter,
-                        xAxisLabelFormatter: widget.xAxisLabelFormatter,
-                        yAxisMargin: widget.yAxisMargin,
-                        xAxisMargin: widget.xAxisMargin,
-                        showDots: widget.showDots,
-                        showGrid: widget.showGrid,
-                        dotRadius: widget.dotRadius,
-                        strokeWidth: widget.strokeWidth,
-                      ),
-                    ),
-                    if (_selectedPoints.isNotEmpty && _tapPosition != null)
-                      Positioned(
-                        left: () {
-                          final dx = _tapPosition!.dx;
-                          final maxLeft =
-                              constraints.maxWidth.toDouble() - tooltipWidth;
-                          if (dx + tooltipWidth > constraints.maxWidth)
-                            return maxLeft;
-                          if (dx < 0) return 0.0;
-                          return dx;
-                        }(),
-                        top: () {
-                          final dy = _tapPosition!.dy;
-                          final top = dy - tooltipHeight;
-                          return top < 0 ? 0.0 : top;
-                        }(),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: SizedBox(
-                            width: tooltipWidth,
-                            child: _getGroupedTooltip(_selectedPoints),
-                          ),
+                onExit: (_) {
+                  setState(() {
+                    _selectedPoints.clear();
+                    _tapPosition = null;
+                  });
+                },
+                child: GestureDetector(
+                  onTapDown: (details) {
+                    setState(() {
+                      _tapPosition = details.localPosition;
+                      _selectedPoints = _detectTappedPoints(
+                        details.localPosition,
+                        constraints.maxWidth,
+                        constraints.maxHeight,
+                      );
+                    });
+
+                    if (_selectedPoints.isNotEmpty &&
+                        widget.onPointTap != null) {
+                      widget.onPointTap!(_selectedPoints.first.point);
+                    }
+                  },
+                  child: Stack(
+                    children: [
+                      CustomPaint(
+                        size: Size.infinite,
+                        painter: LineChartPainter(
+                          series: widget.series,
+                          spacing: widget.spacing,
+                          xAxisLabelStyle: widget.xAxisLabelStyle,
+                          yAxisLabelStyle: widget.yAxisLabelStyle,
+                          yAxisLabelFormatter: widget.yAxisLabelFormatter,
+                          xAxisLabelFormatter: widget.xAxisLabelFormatter,
+                          yAxisMargin: widget.yAxisMargin,
+                          xAxisMargin: widget.xAxisMargin,
+                          showDots: widget.showDots,
+                          showGrid: widget.showGrid,
+                          dotRadius: widget.dotRadius,
+                          strokeWidth: widget.strokeWidth,
                         ),
                       ),
-                  ],
+                      if (_selectedPoints.isNotEmpty && _tapPosition != null)
+                        Positioned(
+                          left: () {
+                            final dx = _tapPosition!.dx;
+                            final maxLeft =
+                                constraints.maxWidth.toDouble() - tooltipWidth;
+                            if (dx + tooltipWidth > constraints.maxWidth)
+                              return maxLeft;
+                            if (dx < 0) return 0.0;
+                            return dx;
+                          }(),
+                          top: () {
+                            final dy = _tapPosition!.dy;
+                            final top = dy - tooltipHeight;
+                            return top < 0 ? 0.0 : top;
+                          }(),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: SizedBox(
+                              width: tooltipWidth,
+                              child: _getGroupedTooltip(_selectedPoints),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               );
             },
