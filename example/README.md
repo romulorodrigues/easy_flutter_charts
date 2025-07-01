@@ -12,5 +12,3 @@ dependencies:
     git:
       url: https://github.com/romulorodrigues/easy_flutter_charts.git
 ```
-
-sds
