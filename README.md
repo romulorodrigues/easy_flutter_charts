@@ -6,14 +6,38 @@ easy_flutter_charts é uma biblioteca simples, leve e personalizável para cria�
 
 Adicione o `easy_flutter_charts` ao seu `pubspec.yaml`:
 
-```yaml
-dependencies:
-  easy_flutter_charts:
-    git:
-      url: https://github.com/romulorodrigues/easy_flutter_charts.git
-```
-
 ## BarChart
+
+# Exemplo
+
+```yaml
+Center(
+      child: SizedBox(
+        height: 400,
+        width: 600,
+        child: BarChart(
+          title: 'Vendas por país',
+          titleStyle: const TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+          data: [
+            BarChartData(label: 'Alemanha', value: 50, color: Colors.blue),
+            BarChartData(label: 'Brasil', value: 80, color: Colors.red),
+            BarChartData(label: 'Camarões', value: 30, color: Colors.green),
+            BarChartData(label: 'Dinamarca', value: 70, color: Colors.orange),
+            BarChartData(
+              label: ['Estados', 'Unidos', 'da América'],
+              value: 100,
+              color: Colors.orange,
+            ),
+            BarChartData(label: 'China', value: 25.5, color: Colors.green),
+          ],
+        ),
+      ),
+    );
+```
 
 | Propriedade           | Tipo                              | Descrição                                                              |
 | --------------------- | --------------------------------- | ---------------------------------------------------------------------- |
@@ -31,6 +55,68 @@ dependencies:
 | `xAxisMargin`         | `double`                          | Margem inferior para os rótulos do eixo X (padrão: `30`).              |
 
 ## LineChart
+
+# Exemplo
+
+```yaml
+Center(
+      child: SizedBox(
+        height: 300,
+        width: 600,
+        child: LineChart(
+          title: 'Temperatura Diária',
+          titleStyle: const TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+          series: [
+            LineChartSeries(
+              name: 'Máxima',
+              color: Colors.red,
+              data: [
+                LineChartData(label: 'Seg', value: 30),
+                LineChartData(label: 'Ter', value: 32),
+                LineChartData(label: 'Qua', value: 31),
+                LineChartData(label: 'Qui', value: 33),
+                LineChartData(label: 'Sex', value: 29),
+              ],
+            ),
+            LineChartSeries(
+              name: 'Média',
+              color: Colors.orange,
+              data: [
+                LineChartData(label: 'Seg', value: 27),
+                LineChartData(label: 'Ter', value: 25),
+                LineChartData(label: 'Qua', value: 21),
+                LineChartData(label: 'Qui', value: 23),
+                LineChartData(label: 'Sex', value: 29),
+              ],
+            ),
+            LineChartSeries(
+              name: 'Mínima',
+              color: Colors.blue,
+              data: [
+                LineChartData(label: 'Seg', value: 20),
+                LineChartData(label: 'Ter', value: 21),
+                LineChartData(label: 'Qua', value: 19),
+                LineChartData(label: 'Qui', value: 22),
+                LineChartData(label: 'Sex', value: 29),
+              ],
+            ),
+          ],
+          yAxisLabelFormatter: (v) => '${v.toStringAsFixed(0)}°C',
+          yAxisLabelStyle: TextStyle(fontSize: 10),
+          xAxisLabelFormatter: (label) => label.toString(),
+          xAxisLabelStyle: TextStyle(fontSize: 10),
+          showDots: true,
+          showGrid: true,
+          // lineTooltipBuilder: (point) =>
+          //     'Dia ${point.label}: ${point.value} °C',
+        ),
+      ),
+    );
+```
 
 | Propriedade           | Tipo                              | Descrição                                                                                                               |
 | --------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -53,6 +139,30 @@ dependencies:
 
 ## PieChart
 
+# Exemplo
+
+```yaml
+Center(
+      child: PieChart(
+        title: 'Distribuição de Vendas',
+        titleStyle: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+        data: [
+          PieChartData(label: 'Brasil', value: 60, color: Colors.green),
+          PieChartData(label: 'Alemanha', value: 76, color: Colors.blue),
+          PieChartData(label: 'Japão', value: 90, color: Colors.red),
+          PieChartData(label: 'EUA', value: 150, color: Colors.orange),
+        ],
+        aspectRatio: 3,
+        pieTooltipBuilder: (data) =>
+            '${data.label}: ${data.value.toStringAsFixed(1)} unidades',
+      ),
+    );
+```
+
 | Parâmetro           | Tipo                             | Descrição                                                         |
 | ------------------- | -------------------------------- | ----------------------------------------------------------------- |
 | `data`              | `List<PieChartData>`             | Lista com os dados do gráfico.                                    |
@@ -61,3 +171,22 @@ dependencies:
 | `aspectRatio`       | `double`                         | Relação largura/altura do gráfico. (padrão: `3.0`).               |
 | `legendPosition`    | `LegendPosition`                 | Posição da legenda: `top`, `bottom`. (padrão: `bottom`).          |
 | `pieTooltipBuilder` | `String Function(PieChartData)?` | Função para personalizar o conteúdo do tooltip ao passar o mouse. |
+
+## 📁 Exemplos
+
+Para exemplos de uso completo com gráficos reais, consulte o diretório /example no repositório.
+Lá você encontrará demonstrações práticas de todos os gráficos com suas personalizações e interações.
+
+## 📮 Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request. 😊
+
+## 📝 Licença
+
+Distribuído sob a licença MIT.
+Veja o arquivo LICENSE para mais informações.
+
+## 👨‍💻 Autor
+
+Desenvolvido por Rômulo Rodrigues.
+Dúvidas ou sugestões? Abra uma issue.
