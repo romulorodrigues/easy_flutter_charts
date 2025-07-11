@@ -1,7 +1,7 @@
 name: easy_flutter_charts
-description: A simple and customizable charting library for Flutter. Create beautiful and responsive charts with ease.
-version: 0.0.1
-homepage:
+description: easy_flutter_charts é uma biblioteca simples, leve e personalizável para criação de gráficos em Flutter. Ela oferece componentes de gráficos de barras, linhas e pizza, ideais para dashboards, visualizações estatísticas entre outros. Você pode integrar visualizações de dados elegantes e responsivas em poucos minutos.
+version: 1.0.0
+homepage: https://github.com/romulorodrigues/easy_flutter_charts
 
 environment:
   sdk: ^3.5.3

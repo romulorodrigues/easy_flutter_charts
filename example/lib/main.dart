@@ -80,8 +80,8 @@ class BarChartTab extends StatelessWidget {
           //   fontSize: 10,
           //   fontWeight: FontWeight.bold,
           // ),
-          yAxisLabelFormatter: (v) => 'R\$ ${v.toStringAsFixed(2)}',
-          xAxisLabelFormatter: (label) => label.toString().toUpperCase(),
+          // yAxisLabelFormatter: (v) => 'R\$ ${v.toStringAsFixed(2)}',
+          // xAxisLabelFormatter: (label) => label.toString().toUpperCase(),
           // yAxisMargin: 60,
           // onBarTap: (bar) {
           //   print('Barra clicada: ${bar.label}, valor: ${bar.value}');
@@ -167,6 +167,11 @@ class PieChartTab extends StatelessWidget {
     return Center(
       child: PieChart(
         title: 'Distribuição de Vendas',
+        titleStyle: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
         data: [
           PieChartData(label: 'Brasil', value: 60, color: Colors.green),
           PieChartData(label: 'Alemanha', value: 76, color: Colors.blue),
