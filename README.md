@@ -8,7 +8,7 @@ Adicione o `easy_flutter_charts` ao seu `pubspec.yaml`:
 
 ## BarChart
 
-# Exemplo
+### Exemplo
 
 ```yaml
 Center(
@@ -56,7 +56,7 @@ Center(
 
 ## LineChart
 
-# Exemplo
+### Exemplo
 
 ```yaml
 Center(
@@ -139,7 +139,7 @@ Center(
 
 ## PieChart
 
-# Exemplo
+### Exemplo
 
 ```yaml
 Center(
