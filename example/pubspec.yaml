@@ -1,4 +1,4 @@
-name: easy_flutter_charts
+name: example
 description: Example app for testing easy_flutter_charts
 publish_to: "none" # Isso impede o Flutter de tentar publicar o exemplo no pub.dev
 
