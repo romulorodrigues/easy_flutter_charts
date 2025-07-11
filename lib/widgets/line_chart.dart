@@ -22,7 +22,7 @@ class LineChart extends StatefulWidget {
   final double strokeWidth;
 
   const LineChart({
-    Key? key,
+    super.key,
     required this.series,
     this.spacing = 20,
     this.title,
@@ -39,7 +39,7 @@ class LineChart extends StatefulWidget {
     this.lineTooltipBuilder,
     this.dotRadius = 4.0,
     this.strokeWidth = 2.0,
-  }) : super(key: key);
+  });
 
   @override
   State<LineChart> createState() => _LineChartState();
@@ -129,8 +129,9 @@ class _LineChartState extends State<LineChart> {
                             final dx = _tapPosition!.dx;
                             final maxLeft =
                                 constraints.maxWidth.toDouble() - tooltipWidth;
-                            if (dx + tooltipWidth > constraints.maxWidth)
+                            if (dx + tooltipWidth > constraints.maxWidth) {
                               return maxLeft;
+                            }
                             if (dx < 0) return 0.0;
                             return dx;
                           }(),

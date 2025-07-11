@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/line_chart_series.dart';
-import '../models/line_chart_data.dart';
 
 class LineChartPainter extends CustomPainter {
   final List<LineChartSeries> series;

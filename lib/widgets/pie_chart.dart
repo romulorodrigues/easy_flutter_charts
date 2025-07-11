@@ -15,14 +15,14 @@ class PieChart extends StatefulWidget {
   final String Function(PieChartData data)? pieTooltipBuilder;
 
   const PieChart({
-    Key? key,
+    super.key,
     required this.data,
     this.title,
     this.titleStyle,
     this.aspectRatio = 3.0,
     this.legendPosition = LegendPosition.bottom,
     this.pieTooltipBuilder,
-  }) : super(key: key);
+  });
   @override
   State<PieChart> createState() => _PieChartState();
 }

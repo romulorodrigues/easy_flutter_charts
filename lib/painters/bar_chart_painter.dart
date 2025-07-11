@@ -102,7 +102,7 @@ class BarChartPainter extends CustomPainter {
     final double barWidth = (availableWidth - totalSpacing) / data.length;
 
     // Largura mínima para não deixar a barra muito fina
-    final double minBarWidth = 8;
+    const double minBarWidth = 8;
     final double finalBarWidth =
         barWidth < minBarWidth ? minBarWidth : barWidth;
 
