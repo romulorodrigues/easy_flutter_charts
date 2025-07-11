@@ -10,6 +10,8 @@ Adicione o `easy_flutter_charts` ao seu `pubspec.yaml`:
 
 ### Exemplo
 
+![BarChart](https://drive.google.com/file/d/1fYYQIwgXkDHOZKkRR0mTpNOSyp6W75ue/view?usp=drive_link)
+
 ```yaml
 Center(
       child: SizedBox(
@@ -57,6 +59,8 @@ Center(
 ## LineChart
 
 ### Exemplo
+
+![LineChart](https://drive.google.com/file/d/1IUeCZDTR5o5MSAe_8-0YIjKX2qOLBbON/view?usp=drive_link)
 
 ```yaml
 Center(
@@ -140,6 +144,8 @@ Center(
 ## PieChart
 
 ### Exemplo
+
+![PieChart](https://drive.google.com/file/d/1JbuTYKqm56RksRHhC3BzfW6iS0-DjZ3C/view?usp=drive_link)
 
 ```yaml
 Center(
