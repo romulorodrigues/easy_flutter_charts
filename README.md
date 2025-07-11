@@ -10,7 +10,7 @@ Adicione o `easy_flutter_charts` ao seu `pubspec.yaml`:
 
 ### Exemplo
 
-![BarChart](https://github.com/romulorodrigues/easy_flutter_charts/blob/main/screenshots/bar_chart.jpg?raw=true)
+![BarChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/bar_chart.jpg)
 
 ```yaml
 Center(
@@ -60,7 +60,7 @@ Center(
 
 ### Exemplo
 
-![LineChart](https://github.com/romulorodrigues/easy_flutter_charts/blob/main/screenshots/line_chart.jpg?raw=true)
+![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart.jpg)
 
 ```yaml
 Center(
@@ -145,7 +145,7 @@ Center(
 
 ### Exemplo
 
-![PieChart](https://github.com/romulorodrigues/easy_flutter_charts/blob/main/screenshots/pie_chart.jpg?raw=true)
+![PieChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/pie_chart.jpg)
 
 ```yaml
 Center(
