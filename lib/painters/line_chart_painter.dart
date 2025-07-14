@@ -14,6 +14,7 @@ class LineChartPainter extends CustomPainter {
   final bool showGrid;
   final double dotRadius;
   final double strokeWidth;
+  final List<dynamic> xAxis;
 
   LineChartPainter({
     required this.series,
@@ -28,6 +29,7 @@ class LineChartPainter extends CustomPainter {
     this.showGrid = true,
     this.dotRadius = 4.0,
     this.strokeWidth = 2.0,
+    required this.xAxis,
   });
 
   @override
@@ -39,13 +41,13 @@ class LineChartPainter extends CustomPainter {
     final allPoints = series.expand((s) => s.data).toList();
     final yValues = allPoints.map((d) => d.value);
     final yMax =
-        (yValues.isEmpty) ? 1.0 : yValues.reduce((a, b) => a > b ? a : b);
+        yValues.isEmpty ? 1.0 : yValues.reduce((a, b) => a > b ? a : b);
     final yMin =
-        (yValues.isEmpty) ? 0.0 : yValues.reduce((a, b) => a < b ? a : b);
-
+        yValues.isEmpty ? 0.0 : yValues.reduce((a, b) => a < b ? a : b);
     final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
-    final pointsPerSeries = series.first.data.length;
 
+    final xLabels = xAxis;
+    final pointsPerSeries = xLabels.length;
     final double xStep =
         pointsPerSeries > 1 ? chartWidth / (pointsPerSeries - 1) : chartWidth;
 
@@ -53,12 +55,16 @@ class LineChartPainter extends CustomPainter {
     for (int i = 0; i <= 5; i++) {
       final y = chartHeight - (chartHeight / 5) * i;
       final yValue = yMin + (yRange / 5) * i;
+
       if (showGrid) {
         final gridPaint = Paint()
           ..color = Colors.grey[300]!
           ..strokeWidth = 1;
         canvas.drawLine(
-            Offset(yAxisMargin, y), Offset(size.width, y), gridPaint);
+          Offset(yAxisMargin, y),
+          Offset(size.width, y),
+          gridPaint,
+        );
       }
 
       final label =
@@ -78,30 +84,33 @@ class LineChartPainter extends CustomPainter {
       paint.strokeWidth = strokeWidth;
 
       final points = <Offset>[];
-      for (int i = 0; i < s.data.length; i++) {
+      final length =
+          [pointsPerSeries, s.data.length].reduce((a, b) => a < b ? a : b);
+
+      for (int i = 0; i < length; i++) {
         final x = yAxisMargin + (xStep * i);
         final y =
             chartHeight - ((s.data[i].value - yMin) / yRange) * chartHeight;
         points.add(Offset(x, y));
 
-        // Ponto
         if (showDots) {
           final dotPaint = Paint()..color = s.color;
           canvas.drawCircle(Offset(x, y), dotRadius, dotPaint);
         }
       }
 
-      // Desenha a linha
-      final path = Path()..moveTo(points[0].dx, points[0].dy);
-      for (int i = 1; i < points.length; i++) {
-        path.lineTo(points[i].dx, points[i].dy);
+      if (points.length >= 2) {
+        final path = Path()..moveTo(points[0].dx, points[0].dy);
+        for (int i = 1; i < points.length; i++) {
+          path.lineTo(points[i].dx, points[i].dy);
+        }
+        canvas.drawPath(path, paint);
       }
-      canvas.drawPath(path, paint);
     }
 
-    // Rótulos do eixo X
-    for (int i = 0; i < pointsPerSeries; i++) {
-      final label = series[0].data[i].label;
+    // Desenha rótulos do eixo X
+    for (int i = 0; i < xLabels.length; i++) {
+      final label = xLabels[i];
       final formatted = xAxisLabelFormatter?.call(label) ?? label.toString();
       final tp = TextPainter(
         text: TextSpan(text: formatted, style: xAxisLabelStyle),
@@ -117,6 +126,6 @@ class LineChartPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant LineChartPainter oldDelegate) {
-    return oldDelegate.series != series;
+    return oldDelegate.series != series || oldDelegate.xAxis != xAxis;
   }
 }

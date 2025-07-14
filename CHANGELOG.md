@@ -1,3 +1,10 @@
+## 1.0.4
+
+### Adicionado
+
+- Suporte completo ao uso de `xAxis` personalizado no `LineChart`.
+- Propriedade `xAxis` agora é **obrigatória** no `LineChart` para garantir consistência nos dados exibidos.
+
 ## 1.0.3
 
 - Reduzida a descrição do `pubspec.yaml`.

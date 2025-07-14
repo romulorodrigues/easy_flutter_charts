@@ -20,6 +20,7 @@ class LineChart extends StatefulWidget {
   final String Function(LineChartData data)? lineTooltipBuilder;
   final double dotRadius;
   final double strokeWidth;
+  final List<dynamic> xAxis;
 
   const LineChart({
     super.key,
@@ -39,6 +40,7 @@ class LineChart extends StatefulWidget {
     this.lineTooltipBuilder,
     this.dotRadius = 4.0,
     this.strokeWidth = 2.0,
+    required this.xAxis,
   });
 
   @override
@@ -121,6 +123,7 @@ class _LineChartState extends State<LineChart> {
                           showGrid: widget.showGrid,
                           dotRadius: widget.dotRadius,
                           strokeWidth: widget.strokeWidth,
+                          xAxis: widget.xAxis,
                         ),
                       ),
                       if (_selectedPoints.isNotEmpty && _tapPosition != null)
@@ -279,23 +282,33 @@ class _LineChartState extends State<LineChart> {
     final chartHeight = height - widget.xAxisMargin;
     final chartWidth = width - widget.yAxisMargin;
 
-    for (final serie in widget.series) {
-      final points = serie.data;
-      final xStep =
-          points.length > 1 ? chartWidth / (points.length - 1) : chartWidth;
+    final xLabels =
+        widget.xAxis ?? widget.series.first.data.map((e) => e.label).toList();
+    final xStep =
+        xLabels.length > 1 ? chartWidth / (xLabels.length - 1) : chartWidth;
 
-      for (int i = 0; i < points.length; i++) {
+    final yValues = widget.series.expand((s) => s.data).map((p) => p.value);
+    if (yValues.isEmpty) return result;
+
+    final yMin = yValues.reduce((a, b) => a < b ? a : b);
+    final yMax = yValues.reduce((a, b) => a > b ? a : b);
+    final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
+
+    for (final serie in widget.series) {
+      // Limita até o comprimento de xAxis OU da série (o menor entre os dois)
+      final length = [
+        xLabels.length,
+        serie.data.length,
+      ].reduce((a, b) => a < b ? a : b);
+
+      for (int i = 0; i < length; i++) {
         final x = widget.yAxisMargin + xStep * i;
-        final yValues = widget.series.expand((s) => s.data).map((p) => p.value);
-        final yMin = yValues.reduce((a, b) => a < b ? a : b);
-        final yMax = yValues.reduce((a, b) => a > b ? a : b);
-        final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
         final y =
-            chartHeight - ((points[i].value - yMin) / yRange) * chartHeight;
+            chartHeight - ((serie.data[i].value - yMin) / yRange) * chartHeight;
 
         final pointPos = Offset(x, y);
         if ((position - pointPos).distance < 12) {
-          result.add((serie: serie, point: points[i]));
+          result.add((serie: serie, point: serie.data[i]));
         }
       }
     }
