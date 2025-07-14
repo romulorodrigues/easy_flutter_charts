@@ -148,7 +148,13 @@ class LineChartTab extends StatelessWidget {
           xAxisLabelStyle: TextStyle(fontSize: 10),
           showDots: true,
           showGrid: true,
-          xAxis: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+          xAxis: [
+            'Segunda',
+            'Terça',
+            ['Quarta', 'feira'],
+            ['Quinta', 'feira'],
+            ['Sexta', 'feira']
+          ],
           // lineTooltipBuilder: (point) =>
           //     'Dia ${point.label}: ${point.value} °C',
         ),

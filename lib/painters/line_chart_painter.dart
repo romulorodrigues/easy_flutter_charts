@@ -108,19 +108,36 @@ class LineChartPainter extends CustomPainter {
       }
     }
 
-    // Desenha rótulos do eixo X
-    for (int i = 0; i < xLabels.length; i++) {
-      final label = xLabels[i];
-      final formatted = xAxisLabelFormatter?.call(label) ?? label.toString();
-      final tp = TextPainter(
-        text: TextSpan(text: formatted, style: xAxisLabelStyle),
-        textAlign: TextAlign.center,
-        textDirection: TextDirection.ltr,
-      );
-      tp.layout();
-      final x = yAxisMargin + (xStep * i) - tp.width / 2;
-      final y = chartHeight + 4;
-      tp.paint(canvas, Offset(x, y));
+    // Rótulos do eixo X
+    for (int i = 0; i < xAxis.length; i++) {
+      final rawLabel = xAxis[i];
+      final formatted =
+          xAxisLabelFormatter?.call(rawLabel) ?? rawLabel.toString();
+      final x = yAxisMargin + (xStep * i);
+
+      final List<String> lines = rawLabel is List
+          ? rawLabel.map((e) => e.toString()).toList()
+          : [formatted];
+
+      double totalHeight = 0;
+      final textPainters = <TextPainter>[];
+
+      for (final line in lines) {
+        final tp = TextPainter(
+          text: TextSpan(text: line, style: xAxisLabelStyle),
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.ltr,
+        );
+        tp.layout();
+        totalHeight += tp.height;
+        textPainters.add(tp);
+      }
+
+      double currentY = chartHeight + 4;
+      for (final tp in textPainters) {
+        tp.paint(canvas, Offset(x - tp.width / 2, currentY));
+        currentY += tp.height;
+      }
     }
   }
 
