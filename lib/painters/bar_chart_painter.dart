@@ -134,7 +134,7 @@ class BarChartPainter extends CustomPainter {
 
     // Pincel para desenhar a grade (linhas de fundo)
     final gridPaint = Paint()
-      ..color = Color.fromRGBO(128, 128, 128, 0.2)
+      ..color = const Color.fromRGBO(128, 128, 128, 0.2)
       ..strokeWidth = 1;
 
     // Linhas horizontais (grade do eixo Y)

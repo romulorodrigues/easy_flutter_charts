@@ -1,3 +1,12 @@
+## 1.0.5
+
+### Atualizado
+
+- Atualização de imagem do LineChart no README.
+- Substituição de `Container` por `SizedBox` para adicionar espaçamento visual conforme recomendação do linter.
+- Ajustes em interpolação de strings para seguir boas práticas (`'$var'` → `${var}` quando necessário).
+- Uso de `super.key` em construtores para simplificar a passagem da chave.
+
 ## 1.0.4
 
 ### Adicionado

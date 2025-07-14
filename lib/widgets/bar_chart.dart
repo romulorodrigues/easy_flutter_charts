@@ -17,7 +17,7 @@ class BarChart extends StatefulWidget {
   final double xAxisMargin;
 
   const BarChart({
-    Key? key,
+    super.key,
     required this.data,
     this.spacing = 20,
     this.title,
@@ -30,7 +30,7 @@ class BarChart extends StatefulWidget {
     this.barTooltipBuilder,
     this.yAxisMargin = 30,
     this.xAxisMargin = 30,
-  }) : super(key: key);
+  });
 
   @override
   State<BarChart> createState() => _BarChartState();
@@ -118,7 +118,7 @@ class _BarChartState extends State<BarChart> {
                 }(),
                 child: Material(
                   color: Colors.transparent,
-                  child: Container(
+                  child: SizedBox(
                     width: tooltipWidth,
                     child: _getDefaultTooltip(_selectedBar!),
                   ),
@@ -220,7 +220,7 @@ class _BarChartState extends State<BarChart> {
   }
 
   BarChartData? _detectTappedBar(Offset position, double width, double height) {
-    final double yAxisX = 40;
+    const double yAxisX = 40;
     final double xAxisY = height - 30;
     final double availableWidth = width - yAxisX - widget.spacing;
     final double totalSpacing = widget.spacing * (widget.data.length + 1);

@@ -282,8 +282,7 @@ class _LineChartState extends State<LineChart> {
     final chartHeight = height - widget.xAxisMargin;
     final chartWidth = width - widget.yAxisMargin;
 
-    final xLabels =
-        widget.xAxis ?? widget.series.first.data.map((e) => e.label).toList();
+    final xLabels = widget.xAxis;
     final xStep =
         xLabels.length > 1 ? chartWidth / (xLabels.length - 1) : chartWidth;
 

@@ -32,7 +32,7 @@ class PieChartPainter extends CustomPainter {
 
       // Texto percentual
       final labelAngle = startAngle + sweepAngle / 2;
-      final percentage = ((item.value / total) * 100).toStringAsFixed(1) + '%';
+      final percentage = '${((item.value / total) * 100).toStringAsFixed(1)}%';
       final offset = Offset(
         center.dx + cos(labelAngle) * radius * 0.5,
         center.dy + sin(labelAngle) * radius * 0.5,
