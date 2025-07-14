@@ -60,7 +60,7 @@ Center(
 
 ### Exemplo
 
-![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart.jpg)
+![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart2.png)
 
 ```yaml
 Center(
