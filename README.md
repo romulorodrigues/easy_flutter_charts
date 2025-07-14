@@ -79,33 +79,30 @@ Center(
               name: 'Máxima',
               color: Colors.red,
               data: [
-                LineChartData(label: 'Seg', value: 30),
-                LineChartData(label: 'Ter', value: 32),
-                LineChartData(label: 'Qua', value: 31),
-                LineChartData(label: 'Qui', value: 33),
-                LineChartData(label: 'Sex', value: 29),
+                LineChartData(label: 'Segunda', value: 30),
+                LineChartData(label: 'Terça', value: 32),
+                LineChartData(label: 'Quarta', value: 31),
+                LineChartData(label: 'Quinta', value: 33),
+                LineChartData(label: 'Sexta', value: 29),
               ],
             ),
             LineChartSeries(
               name: 'Média',
               color: Colors.orange,
               data: [
-                LineChartData(label: 'Seg', value: 27),
-                LineChartData(label: 'Ter', value: 25),
-                LineChartData(label: 'Qua', value: 21),
-                LineChartData(label: 'Qui', value: 23),
-                LineChartData(label: 'Sex', value: 29),
+                LineChartData(label: 'Segunda', value: 27),
+                LineChartData(label: 'Terça', value: 25),
+                LineChartData(label: 'Quarta', value: 21),
+                LineChartData(label: 'Quinta', value: 29),
               ],
             ),
             LineChartSeries(
               name: 'Mínima',
               color: Colors.blue,
               data: [
-                LineChartData(label: 'Seg', value: 20),
-                LineChartData(label: 'Ter', value: 21),
-                LineChartData(label: 'Qua', value: 19),
-                LineChartData(label: 'Qui', value: 22),
-                LineChartData(label: 'Sex', value: 29),
+                LineChartData(label: 'Segunda', value: 20),
+                LineChartData(label: 'Terça', value: 21),
+                LineChartData(label: 'Quarta', value: 19),
               ],
             ),
           ],
@@ -115,6 +112,7 @@ Center(
           xAxisLabelStyle: TextStyle(fontSize: 10),
           showDots: true,
           showGrid: true,
+          xAxis: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
           // lineTooltipBuilder: (point) =>
           //     'Dia ${point.label}: ${point.value} °C',
         ),
@@ -125,6 +123,7 @@ Center(
 | Propriedade           | Tipo                              | Descrição                                                                                                               |
 | --------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `series`              | `List<LineChartSeries>`           | Lista de séries (linhas) a serem desenhadas no gráfico. Cada série representa uma linha com seus próprios pontos e cor. |
+| `xAxis`               | `List<dynamic>`                   | Obrigatório. Lista de rótulos do eixo X. Define a quantidade de pontos visíveis e seus respectivos rótulos.             |
 | `spacing`             | `double`                          | Espaçamento horizontal entre os pontos da linha (padrão: `20`).                                                         |
 | `title`               | `String?`                         | Título do gráfico.                                                                                                      |
 | `titleStyle`          | `TextStyle?`                      | Estilo do título do gráfico.                                                                                            |
