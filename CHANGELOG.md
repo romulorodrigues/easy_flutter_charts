@@ -1,6 +1,18 @@
-## 1.0.6 
+## 1.0.7
+
+### Alterado
+
+- O tooltip do `LineChart` agora se adapta automaticamente ao conteúdo, incluindo:
+  - Rótulos com múltiplas linhas;
+  - Textos longos com quebra automática de linha;
+  - Expansão vertical automática sem overflow;
+  - Largura máxima limitada para melhor responsividade.
+- Melhoria na legibilidade e estilo do conteúdo exibido no tooltip.
+
+## 1.0.6
 
 ### Adicionado
+
 - Suporte a rótulos multilinha no eixo X do `LineChart`.
 - Agora é possível passar uma lista de `String` como item no `xAxis`, e cada linha será exibida verticalmente empilhada (um texto abaixo do outro).
   ```dart
@@ -10,6 +22,7 @@
     'Mar',
     ['Abril', 'Completo']
   ]
+  ```
 
 ## 1.0.5
 

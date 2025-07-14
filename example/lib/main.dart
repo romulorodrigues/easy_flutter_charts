@@ -133,7 +133,7 @@ class LineChartTab extends StatelessWidget {
               ],
             ),
             LineChartSeries(
-              name: 'Mínima',
+              name: 'Mínima dasdsa asdasd asdasd sad as',
               color: Colors.blue,
               data: [
                 LineChartData(label: 'Segunda', value: 20),

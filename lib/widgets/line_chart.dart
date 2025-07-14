@@ -197,6 +197,7 @@ class _LineChartState extends State<LineChart> {
     final labelText = points.first.point.label.toString();
 
     return Container(
+      constraints: const BoxConstraints(maxWidth: 200),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: const Color(0xFFF5F5F5),
@@ -220,6 +221,7 @@ class _LineChartState extends State<LineChart> {
               fontSize: 13,
               color: Colors.black87,
             ),
+            softWrap: true,
           ),
           const SizedBox(height: 6),
           Container(
@@ -230,43 +232,25 @@ class _LineChartState extends State<LineChart> {
           const SizedBox(height: 6),
           ...points.map((e) {
             final custom = widget.lineTooltipBuilder?.call(e.point);
-            if (custom != null) {
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    margin: const EdgeInsets.only(right: 6),
-                    decoration: BoxDecoration(
-                      color: e.serie.color,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      custom,
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  ),
-                ],
-              );
-            }
-
             return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: 10,
                   height: 10,
-                  margin: const EdgeInsets.only(right: 6),
+                  margin: const EdgeInsets.only(right: 6, top: 2),
                   decoration: BoxDecoration(
                     color: e.serie.color,
                     shape: BoxShape.circle,
                   ),
                 ),
-                Text(
-                  '${e.serie.name}: ${e.point.value.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 12),
+                Expanded(
+                  child: Text(
+                    custom ??
+                        '${e.serie.name}: ${e.point.value.toStringAsFixed(2)}',
+                    style: const TextStyle(fontSize: 12),
+                    softWrap: true,
+                  ),
                 ),
               ],
             );
