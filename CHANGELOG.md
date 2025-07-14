@@ -1,3 +1,16 @@
+## 1.0.6 
+
+### Adicionado
+- Suporte a rótulos multilinha no eixo X do `LineChart`.
+- Agora é possível passar uma lista de `String` como item no `xAxis`, e cada linha será exibida verticalmente empilhada (um texto abaixo do outro).
+  ```dart
+  xAxis: [
+    'Jan',
+    ['Fev', '2024'],
+    'Mar',
+    ['Abril', 'Completo']
+  ]
+
 ## 1.0.5
 
 ### Atualizado

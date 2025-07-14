@@ -60,7 +60,7 @@ Center(
 
 ### Exemplo
 
-![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart2.png)
+![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart3.png)
 
 ```yaml
 Center(
@@ -112,7 +112,13 @@ Center(
           xAxisLabelStyle: TextStyle(fontSize: 10),
           showDots: true,
           showGrid: true,
-          xAxis: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+          xAxis: [
+            'Segunda',
+            'Terça',
+            ['Quarta', 'feira'],
+            ['Quinta', 'feira'],
+            ['Sexta', 'feira']
+          ],
           // lineTooltipBuilder: (point) =>
           //     'Dia ${point.label}: ${point.value} °C',
         ),
