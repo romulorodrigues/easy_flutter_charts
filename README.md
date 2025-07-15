@@ -145,6 +145,8 @@ Center(
 | `lineTooltipBuilder`  | `String Function(LineChartData)?` | Função para personalizar o conteúdo do tooltip ao tocar em um ponto.                                                    |
 | `dotRadius`           | `double`                          | Define o raio dos pontos visíveis (se `showDots` for `true`) (padrão: `4.0`).                                           |
 | `strokeWidth`         | `double`                          | Espessura da linha desenhada no gráfico (padrão: `2.0`).                                                                |
+| `yMin`                | `double?`                         | Valor mínimo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
+| `yMax`                | `double?`                         | Valor máximo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
 
 ## PieChart
 

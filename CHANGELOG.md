@@ -1,3 +1,9 @@
+## 1.0.9
+
+### Adicionado
+
+- Adicionados os parâmetros `yMin` e `yMax` no `LineChart` para permitir a definição manual dos valores mínimo e máximo do eixo Y.
+
 ## 1.0.8
 
 ### Alterado

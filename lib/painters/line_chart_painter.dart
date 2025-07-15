@@ -55,8 +55,8 @@ class LineChartPainter extends CustomPainter {
     final dataYMin =
         yValues.isEmpty ? 0.0 : yValues.reduce((a, b) => a < b ? a : b);
 
-    final yMaxValue = this.yMax ?? dataYMax;
-    final yMinValue = this.yMin ?? dataYMin;
+    final yMaxValue = yMax ?? dataYMax;
+    final yMinValue = yMin ?? dataYMin;
     final yRange = yMaxValue - yMinValue == 0 ? 1 : yMaxValue - yMinValue;
 
     final xLabels = xAxis;
