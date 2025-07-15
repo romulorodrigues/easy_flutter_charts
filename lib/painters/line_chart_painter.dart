@@ -15,6 +15,8 @@ class LineChartPainter extends CustomPainter {
   final double dotRadius;
   final double strokeWidth;
   final List<dynamic> xAxis;
+  final double? yMin;
+  final double? yMax;
 
   LineChartPainter({
     required this.series,
@@ -30,6 +32,8 @@ class LineChartPainter extends CustomPainter {
     this.dotRadius = 4.0,
     this.strokeWidth = 2.0,
     required this.xAxis,
+    this.yMin,
+    this.yMax,
   });
 
   @override
@@ -45,11 +49,15 @@ class LineChartPainter extends CustomPainter {
 
     final allPoints = series.expand((s) => s.data).toList();
     final yValues = allPoints.map((d) => d.value);
-    final yMax =
+
+    final dataYMax =
         yValues.isEmpty ? 1.0 : yValues.reduce((a, b) => a > b ? a : b);
-    final yMin =
+    final dataYMin =
         yValues.isEmpty ? 0.0 : yValues.reduce((a, b) => a < b ? a : b);
-    final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
+
+    final yMaxValue = this.yMax ?? dataYMax;
+    final yMinValue = this.yMin ?? dataYMin;
+    final yRange = yMaxValue - yMinValue == 0 ? 1 : yMaxValue - yMinValue;
 
     final xLabels = xAxis;
     final pointsPerSeries = xLabels.length;
@@ -59,7 +67,7 @@ class LineChartPainter extends CustomPainter {
     // Desenha linhas de grade e rótulos Y
     for (int i = 0; i <= 5; i++) {
       final y = chartHeight - (chartHeight / 5) * i;
-      final yValue = yMin + (yRange / 5) * i;
+      final yValue = yMinValue + (yRange / 5) * i;
 
       if (showGrid) {
         final gridPaint = Paint()
@@ -94,8 +102,8 @@ class LineChartPainter extends CustomPainter {
 
       for (int i = 0; i < length; i++) {
         final x = yAxisMargin + (xStep * i);
-        final y =
-            chartHeight - ((s.data[i].value - yMin) / yRange) * chartHeight;
+        final y = chartHeight -
+            ((s.data[i].value - yMinValue) / yRange) * chartHeight;
         points.add(Offset(x, y));
 
         if (showDots) {

@@ -21,6 +21,8 @@ class LineChart extends StatefulWidget {
   final double dotRadius;
   final double strokeWidth;
   final List<dynamic> xAxis;
+  final double? yMin;
+  final double? yMax;
 
   const LineChart({
     super.key,
@@ -41,6 +43,8 @@ class LineChart extends StatefulWidget {
     this.dotRadius = 4.0,
     this.strokeWidth = 2.0,
     required this.xAxis,
+    this.yMin,
+    this.yMax,
   });
 
   @override
@@ -124,6 +128,8 @@ class _LineChartState extends State<LineChart> {
                           dotRadius: widget.dotRadius,
                           strokeWidth: widget.strokeWidth,
                           xAxis: widget.xAxis,
+                          yMax: widget.yMax,
+                          yMin: widget.yMin,
                         ),
                       ),
                       if (_selectedPoints.isNotEmpty && _tapPosition != null)
@@ -273,8 +279,11 @@ class _LineChartState extends State<LineChart> {
     final yValues = widget.series.expand((s) => s.data).map((p) => p.value);
     if (yValues.isEmpty) return result;
 
-    final yMin = yValues.reduce((a, b) => a < b ? a : b);
-    final yMax = yValues.reduce((a, b) => a > b ? a : b);
+    final dataYMin = yValues.reduce((a, b) => a < b ? a : b);
+    final dataYMax = yValues.reduce((a, b) => a > b ? a : b);
+
+    final yMin = widget.yMin ?? dataYMin;
+    final yMax = widget.yMax ?? dataYMax;
     final yRange = yMax - yMin == 0 ? 1 : yMax - yMin;
 
     for (final serie in widget.series) {
