@@ -38,6 +38,11 @@ class LineChartPainter extends CustomPainter {
     final double chartWidth = size.width - yAxisMargin;
     final double chartHeight = size.height - xAxisMargin;
 
+    final effectiveXAxisLabelStyle =
+        xAxisLabelStyle ?? const TextStyle(color: Colors.black);
+    final effectiveYAxisLabelStyle =
+        yAxisLabelStyle ?? const TextStyle(color: Colors.black);
+
     final allPoints = series.expand((s) => s.data).toList();
     final yValues = allPoints.map((d) => d.value);
     final yMax =
@@ -70,7 +75,7 @@ class LineChartPainter extends CustomPainter {
       final label =
           yAxisLabelFormatter?.call(yValue) ?? yValue.toStringAsFixed(1);
       final tp = TextPainter(
-        text: TextSpan(text: label, style: yAxisLabelStyle),
+        text: TextSpan(text: label, style: effectiveYAxisLabelStyle),
         textAlign: TextAlign.right,
         textDirection: TextDirection.ltr,
       );
@@ -124,7 +129,7 @@ class LineChartPainter extends CustomPainter {
 
       for (final line in lines) {
         final tp = TextPainter(
-          text: TextSpan(text: line, style: xAxisLabelStyle),
+          text: TextSpan(text: line, style: effectiveXAxisLabelStyle),
           textAlign: TextAlign.center,
           textDirection: TextDirection.ltr,
         );
@@ -133,7 +138,7 @@ class LineChartPainter extends CustomPainter {
         textPainters.add(tp);
       }
 
-      double currentY = chartHeight + 4;
+      double currentY = chartHeight + 10;
       for (final tp in textPainters) {
         tp.paint(canvas, Offset(x - tp.width / 2, currentY));
         currentY += tp.height;

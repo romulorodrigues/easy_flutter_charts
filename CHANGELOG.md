@@ -1,3 +1,13 @@
+## 1.0.8
+
+### Alterado
+
+- Cor padrão dos rótulos dos eixos X e Y definida como preta quando nenhum estilo é informado.
+
+### Adicionado
+
+- Margem superior de 8px adicionada aos labels do eixo X para melhor espaçamento visual.
+
 ## 1.0.7
 
 ### Alterado
