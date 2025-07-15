@@ -17,7 +17,8 @@ class LineChart extends StatefulWidget {
   final double xAxisMargin;
   final bool showDots;
   final bool showGrid;
-  final String Function(LineChartData data)? lineTooltipBuilder;
+  final String Function(LineChartSeries serie, LineChartData data)?
+      lineTooltipBuilder;
   final double dotRadius;
   final double strokeWidth;
   final List<dynamic> xAxis;
@@ -259,7 +260,7 @@ class _LineChartState extends State<LineChart> {
           ),
           const SizedBox(height: 6),
           ...points.map((e) {
-            final custom = widget.lineTooltipBuilder?.call(e.point);
+            final custom = widget.lineTooltipBuilder?.call(e.serie, e.point);
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

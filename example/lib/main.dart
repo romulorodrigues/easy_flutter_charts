@@ -155,8 +155,8 @@ class LineChartTab extends StatelessWidget {
             ['Quinta', 'feira'],
             ['Sexta', 'feira']
           ],
-          // lineTooltipBuilder: (point) =>
-          //     'Dia ${point.label}: ${point.value} °C',
+          // lineTooltipBuilder: (serie, point) =>
+          //     '${serie.name}: ${point.label}: ${point.value} °C',
         ),
       ),
     );
