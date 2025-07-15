@@ -119,34 +119,34 @@ Center(
             ['Quinta', 'feira'],
             ['Sexta', 'feira']
           ],
-          // lineTooltipBuilder: (point) =>
-          //     'Dia ${point.label}: ${point.value} °C',
+          // lineTooltipBuilder: (serie, point) =>
+          //     '${serie.name}: ${point.label}: ${point.value} °C',
         ),
       ),
     );
 ```
 
-| Propriedade           | Tipo                              | Descrição                                                                                                               |
-| --------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `series`              | `List<LineChartSeries>`           | Lista de séries (linhas) a serem desenhadas no gráfico. Cada série representa uma linha com seus próprios pontos e cor. |
-| `xAxis`               | `List<dynamic>`                   | Obrigatório. Lista de rótulos do eixo X. Define a quantidade de pontos visíveis e seus respectivos rótulos.             |
-| `spacing`             | `double`                          | Espaçamento horizontal entre os pontos da linha (padrão: `20`).                                                         |
-| `title`               | `String?`                         | Título do gráfico.                                                                                                      |
-| `titleStyle`          | `TextStyle?`                      | Estilo do título do gráfico.                                                                                            |
-| `xAxisLabelStyle`     | `TextStyle?`                      | Estilo dos rótulos no eixo X.                                                                                           |
-| `yAxisLabelStyle`     | `TextStyle?`                      | Estilo dos rótulos no eixo Y.                                                                                           |
-| `yAxisLabelFormatter` | `String Function(double value)?`  | Função para formatar os valores do eixo Y.                                                                              |
-| `xAxisLabelFormatter` | `String Function(dynamic label)?` | Função para formatar os rótulos do eixo X.                                                                              |
-| `onPointTap`          | `void Function(LineChartData)?`   | Callback disparado ao tocar em um ponto da linha.                                                                       |
-| `yAxisMargin`         | `double`                          | Margem à esquerda para rótulos do eixo Y (padrão: `30`).                                                                |
-| `xAxisMargin`         | `double`                          | Margem inferior para rótulos do eixo X (padrão: `30`).                                                                  |
-| `showDots`            | `bool`                            | Exibe ou oculta os pontos nos vértices das linhas (padrão: `true`).                                                     |
-| `showGrid`            | `bool`                            | Exibe ou oculta a grade de fundo (padrão: `true`).                                                                      |
-| `lineTooltipBuilder`  | `String Function(LineChartData)?` | Função para personalizar o conteúdo do tooltip ao tocar em um ponto.                                                    |
-| `dotRadius`           | `double`                          | Define o raio dos pontos visíveis (se `showDots` for `true`) (padrão: `4.0`).                                           |
-| `strokeWidth`         | `double`                          | Espessura da linha desenhada no gráfico (padrão: `2.0`).                                                                |
-| `yMin`                | `double?`                         | Valor mínimo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
-| `yMax`                | `double?`                         | Valor máximo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
+| Propriedade           | Tipo                                                     | Descrição                                                                                                               |
+| --------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `series`              | `List<LineChartSeries>`                                  | Lista de séries (linhas) a serem desenhadas no gráfico. Cada série representa uma linha com seus próprios pontos e cor. |
+| `xAxis`               | `List<dynamic>`                                          | Obrigatório. Lista de rótulos do eixo X. Define a quantidade de pontos visíveis e seus respectivos rótulos.             |
+| `spacing`             | `double`                                                 | Espaçamento horizontal entre os pontos da linha (padrão: `20`).                                                         |
+| `title`               | `String?`                                                | Título do gráfico.                                                                                                      |
+| `titleStyle`          | `TextStyle?`                                             | Estilo do título do gráfico.                                                                                            |
+| `xAxisLabelStyle`     | `TextStyle?`                                             | Estilo dos rótulos no eixo X.                                                                                           |
+| `yAxisLabelStyle`     | `TextStyle?`                                             | Estilo dos rótulos no eixo Y.                                                                                           |
+| `yAxisLabelFormatter` | `String Function(double value)?`                         | Função para formatar os valores do eixo Y.                                                                              |
+| `xAxisLabelFormatter` | `String Function(dynamic label)?`                        | Função para formatar os rótulos do eixo X.                                                                              |
+| `onPointTap`          | `void Function(LineChartData)?`                          | Callback disparado ao tocar em um ponto da linha.                                                                       |
+| `yAxisMargin`         | `double`                                                 | Margem à esquerda para rótulos do eixo Y (padrão: `30`).                                                                |
+| `xAxisMargin`         | `double`                                                 | Margem inferior para rótulos do eixo X (padrão: `30`).                                                                  |
+| `showDots`            | `bool`                                                   | Exibe ou oculta os pontos nos vértices das linhas (padrão: `true`).                                                     |
+| `showGrid`            | `bool`                                                   | Exibe ou oculta a grade de fundo (padrão: `true`).                                                                      |
+| `lineTooltipBuilder`  | `String Function(LineChartSeries serie, LineChartData)?` | Função para personalizar o conteúdo do tooltip ao tocar em um ponto.                                                    |
+| `dotRadius`           | `double`                                                 | Define o raio dos pontos visíveis (se `showDots` for `true`) (padrão: `4.0`).                                           |
+| `strokeWidth`         | `double`                                                 | Espessura da linha desenhada no gráfico (padrão: `2.0`).                                                                |
+| `yMin`                | `double?`                                                | Valor mínimo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
+| `yMax`                | `double?`                                                | Valor máximo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
 
 ## PieChart
 

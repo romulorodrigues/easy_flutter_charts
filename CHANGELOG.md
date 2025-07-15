@@ -1,3 +1,9 @@
+## 1.0.11
+
+### Adicionado
+
+- Suporte à função `lineTooltipBuilder` com acesso à `LineChartSeries` além de `LineChartData`, permitindo tooltips mais ricos e personalizados.
+
 ## 1.0.10
 
 ### Alterado
