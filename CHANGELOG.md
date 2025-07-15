@@ -1,3 +1,9 @@
+## 1.0.10
+
+### Alterado
+
+- Posicionamento dinâmico do `tooltip` com base na altura real no LineChart.
+
 ## 1.0.9
 
 ### Adicionado

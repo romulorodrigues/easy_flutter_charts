@@ -55,11 +55,24 @@ class _LineChartState extends State<LineChart> {
   Offset? _tapPosition;
   List<({LineChartSeries serie, LineChartData point})> _selectedPoints = [];
 
+  final GlobalKey _tooltipKey = GlobalKey();
   double tooltipWidth = 160.0;
   double tooltipHeight = 50.0;
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_tooltipKey.currentContext != null) {
+        final box = _tooltipKey.currentContext!.findRenderObject() as RenderBox;
+        final height = box.size.height;
+        if (tooltipHeight != height) {
+          setState(() {
+            tooltipHeight = height;
+          });
+        }
+      }
+    });
+
     return Column(
       children: [
         if (widget.title != null)
@@ -146,8 +159,16 @@ class _LineChartState extends State<LineChart> {
                           }(),
                           top: () {
                             final dy = _tapPosition!.dy;
-                            final top = dy - tooltipHeight;
-                            return top < 0 ? 0.0 : top;
+                            final eixoXY =
+                                constraints.maxHeight - widget.xAxisMargin;
+                            final maxTop = eixoXY - tooltipHeight;
+                            // valor mínimo para não sair do topo da tela
+                            const minTop = 0.0;
+                            final proposedTop = dy - tooltipHeight;
+                            if (proposedTop < minTop) return minTop;
+                            if (proposedTop > maxTop) return maxTop;
+
+                            return proposedTop;
                           }(),
                           child: Material(
                             color: Colors.transparent,
@@ -203,6 +224,7 @@ class _LineChartState extends State<LineChart> {
     final labelText = points.first.point.label.toString();
 
     return Container(
+      key: _tooltipKey,
       constraints: const BoxConstraints(maxWidth: 200),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
