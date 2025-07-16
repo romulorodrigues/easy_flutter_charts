@@ -6,3 +6,5 @@ export 'models/line_chart_data.dart';
 export 'widgets/line_chart.dart';
 export 'models/pie_chart_data.dart';
 export 'widgets/pie_chart.dart';
+export 'models/radial_bar_chart_data.dart';
+export 'widgets/radial_bar_chart.dart';

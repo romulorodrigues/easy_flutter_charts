@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/radial_bar_chart_data.dart';
 import '../painters/radial_bar_chart_painter.dart';
-
-enum LegendPosition {
-  top,
-  bottom,
-}
+import '../models/legend_position.dart';
 
 class RadialBarChart extends StatefulWidget {
   final List<RadialBarData> data;

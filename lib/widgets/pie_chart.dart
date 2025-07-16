@@ -3,8 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../models/pie_chart_data.dart';
 import '../painters/pie_chart_painter.dart';
-
-enum LegendPosition { top, bottom }
+import '../models/legend_position.dart';
 
 class PieChart extends StatefulWidget {
   final List<PieChartData> data;

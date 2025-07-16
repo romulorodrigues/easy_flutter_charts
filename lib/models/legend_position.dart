@@ -1,0 +1,4 @@
+enum LegendPosition {
+  top,
+  bottom,
+}
