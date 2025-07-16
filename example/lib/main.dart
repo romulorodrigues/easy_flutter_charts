@@ -1,4 +1,7 @@
 import 'package:easy_flutter_charts/models/line_chart_series.dart';
+import 'package:easy_flutter_charts/models/radial_bar_chart_data.dart';
+import 'package:easy_flutter_charts/widgets/radial_bar_chart.dart' as radial;
+import 'package:easy_flutter_charts/widgets/pie_chart.dart' as pie;
 import 'package:flutter/material.dart';
 import 'package:easy_flutter_charts/easy_flutter_charts.dart';
 
@@ -23,7 +26,7 @@ class ChartTabsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Exemplos de Gráficos'),
@@ -32,6 +35,7 @@ class ChartTabsPage extends StatelessWidget {
               Tab(text: 'Bar Chart'),
               Tab(text: 'Line Chart'),
               Tab(text: 'Pie Chart'),
+              Tab(text: 'Radial Chart'),
             ],
           ),
         ),
@@ -40,6 +44,7 @@ class ChartTabsPage extends StatelessWidget {
             BarChartTab(),
             LineChartTab(),
             PieChartTab(),
+            RadialBarChartTab(),
           ],
         ),
       ),
@@ -183,9 +188,32 @@ class PieChartTab extends StatelessWidget {
           PieChartData(label: 'EUA', value: 150, color: Colors.orange),
         ],
         aspectRatio: 3,
-        // legendPosition: LegendPosition.bottom,
         pieTooltipBuilder: (data) =>
             '${data.label}: ${data.value.toStringAsFixed(1)} unidades',
+      ),
+    );
+  }
+}
+
+class RadialBarChartTab extends StatelessWidget {
+  const RadialBarChartTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: radial.RadialBarChart(
+        data: [
+          RadialBarData(value: 40, color: Colors.blue, label: 'Azul'),
+          RadialBarData(value: 30, color: Colors.green, label: 'Verde'),
+          RadialBarData(value: 20, color: Colors.orange, label: 'Laranja'),
+          RadialBarData(value: 60, color: Colors.red, label: 'Vermelho'),
+        ],
+        centerTextBuilder: (data) => '${data.label}\n${data.value} unidades',
+        centerTextStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        aspectRatio: 1.5,
       ),
     );
   }
