@@ -1,92 +1,98 @@
+## 1.1.0
+
+### Added
+
+- New `RadialBarChart` component for visualizing data in radial bar chart format.
+
 ## 1.0.11
 
-### Adicionado
+### Added
 
-- Suporte à função `lineTooltipBuilder` com acesso à `LineChartSeries` além de `LineChartData`, permitindo tooltips mais ricos e personalizados.
+- Support for the `lineTooltipBuilder` function with access to `LineChartSeries` in addition to `LineChartData`, allowing for richer and more customizable tooltips.
 
 ## 1.0.10
 
-### Alterado
+### Changed
 
-- Posicionamento dinâmico do `tooltip` com base na altura real no LineChart.
+- Dynamic positioning of the `tooltip` based on the actual height in the LineChart.
 
 ## 1.0.9
 
-### Adicionado
+### Added
 
-- Adicionados os parâmetros `yMin` e `yMax` no `LineChart` para permitir a definição manual dos valores mínimo e máximo do eixo Y.
+- Added `yMin` and `yMax` parameters in `LineChart` to allow manual definition of the minimum and maximum values of the Y-axis.
 
 ## 1.0.8
 
-### Alterado
+### Changed
 
-- Cor padrão dos rótulos dos eixos X e Y definida como preta quando nenhum estilo é informado.
+- Default color of the X and Y axis labels set to black when no style is provided.
 
-### Adicionado
+### Added
 
-- Margem superior de 8px adicionada aos labels do eixo X para melhor espaçamento visual.
+- Top margin of 8px added to X-axis labels for better visual spacing.
 
 ## 1.0.7
 
-### Alterado
+### Changed
 
-- O tooltip do `LineChart` agora se adapta automaticamente ao conteúdo, incluindo:
-  - Rótulos com múltiplas linhas;
-  - Textos longos com quebra automática de linha;
-  - Expansão vertical automática sem overflow;
-  - Largura máxima limitada para melhor responsividade.
-- Melhoria na legibilidade e estilo do conteúdo exibido no tooltip.
+- The `LineChart` tooltip now automatically adapts to the content, including:
+  - Multi-line labels;
+  - Long texts with automatic line breaks;
+  - Automatic vertical expansion without overflow;
+  - Maximum width limitation for better responsiveness.
+- Improved readability and style of the content displayed in the tooltip.
 
 ## 1.0.6
 
-### Adicionado
+### Added
 
-- Suporte a rótulos multilinha no eixo X do `LineChart`.
-- Agora é possível passar uma lista de `String` como item no `xAxis`, e cada linha será exibida verticalmente empilhada (um texto abaixo do outro).
+- Support for multi-line labels on the X-axis in the `LineChart`.
+- You can now pass a list of `String` as an item in the `xAxis`, and each line will be displayed vertically stacked (one text below the other).
   ```dart
   xAxis: [
     'Jan',
     ['Fev', '2024'],
     'Mar',
-    ['Abril', 'Completo']
+    ['Abr', 'Completo']
   ]
   ```
 
 ## 1.0.5
 
-### Atualizado
+### Updated
 
-- Atualização de imagem do LineChart no README.
-- Substituição de `Container` por `SizedBox` para adicionar espaçamento visual conforme recomendação do linter.
-- Ajustes em interpolação de strings para seguir boas práticas (`'$var'` → `${var}` quando necessário).
-- Uso de `super.key` em construtores para simplificar a passagem da chave.
+- Updated LineChart image in the README.
+- Replaced `Container` with `SizedBox` to add visual spacing as recommended by the linter.
+- Adjusted string interpolation to follow best practices (`'$var'` → `${var}` when necessary).
+- Used `super.key` in constructors to simplify key passing.
 
 ## 1.0.4
 
-### Adicionado
+### Added
 
-- Suporte completo ao uso de `xAxis` personalizado no `LineChart`.
-- Propriedade `xAxis` agora é **obrigatória** no `LineChart` para garantir consistência nos dados exibidos.
+- Full support for custom `xAxis` usage in the `LineChart`.
+- The `xAxis` property is now **required** in the `LineChart` to ensure consistency in the displayed data.
 
 ## 1.0.3
 
-- Reduzida a descrição do `pubspec.yaml`.
-- Incluído campo `repository:` no `pubspec.yaml`.
-- Substituído uso de `withOpacity(0.2)` por `Color.fromRGBO(128, 128, 128, 0.2)` para remover aviso de API obsoleta.
+- Reduced the description in `pubspec.yaml`.
+- Added `repository:` field in `pubspec.yaml`.
+- Replaced `withOpacity(0.2)` with `Color.fromRGBO(128, 128, 128, 0.2)` to remove deprecated API warning.
 
 ## 1.0.2
 
-### Adicionado
+### Added
 
-- Exemplo com imagens no README.
+- Example with images in the README.
 
 ## 1.0.1
 
-- Atualização do README.
+- README update.
 
 ## 1.0.0
 
-- Primeira release
+- First release.
 
 ## 0.0.1
 

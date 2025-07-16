@@ -1,7 +1,4 @@
 import 'package:easy_flutter_charts/models/line_chart_series.dart';
-import 'package:easy_flutter_charts/models/radial_bar_chart_data.dart';
-import 'package:easy_flutter_charts/widgets/radial_bar_chart.dart' as radial;
-import 'package:easy_flutter_charts/widgets/pie_chart.dart' as pie;
 import 'package:flutter/material.dart';
 import 'package:easy_flutter_charts/easy_flutter_charts.dart';
 
@@ -201,7 +198,7 @@ class RadialBarChartTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: radial.RadialBarChart(
+      child: RadialBarChart(
         data: [
           RadialBarData(value: 40, color: Colors.blue, label: 'Azul'),
           RadialBarData(value: 30, color: Colors.green, label: 'Verde'),

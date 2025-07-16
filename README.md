@@ -1,14 +1,19 @@
 # easy_flutter_charts
 
-easy_flutter_charts é uma biblioteca simples, leve e personalizável para criação de gráficos em Flutter. Ela oferece componentes de gráficos de barras, linhas e pizza, ideais para dashboards, visualizações estatísticas entre outros. Você pode integrar visualizações de dados elegantes e responsivas em poucos minutos.
+easy_flutter_charts is a simple, lightweight, and customizable library for creating charts in Flutter. It provides chart components ideal for dashboards, statistical visualizations, and more. You can integrate elegant and responsive data visualizations in just a few minutes.
 
-## 📦 Instalação
+## 📦 Installation
 
-Adicione o `easy_flutter_charts` ao seu `pubspec.yaml`:
+Add the latest version of easy_flutter_charts to your pubspec.yaml:
+
+```yaml
+dependencies:
+  easy_flutter_charts: latest version
+```
 
 ## BarChart
 
-### Exemplo
+### Example
 
 ![BarChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/bar_chart.jpg)
 
@@ -41,24 +46,24 @@ Center(
     );
 ```
 
-| Propriedade           | Tipo                              | Descrição                                                              |
-| --------------------- | --------------------------------- | ---------------------------------------------------------------------- |
-| `data`                | `List<BarChartData>`              | Lista de objetos que representam os dados a serem exibidos no gráfico. |
-| `spacing`             | `double`                          | Espaçamento horizontal entre as barras (padrão: `20`).                 |
-| `title`               | `String?`                         | Título do gráfico.                                                     |
-| `titleStyle`          | `TextStyle?`                      | Estilo do texto do título.                                             |
-| `xAxisLabelStyle`     | `TextStyle?`                      | Estilo do texto dos rótulos do eixo X.                                 |
-| `yAxisLabelStyle`     | `TextStyle?`                      | Estilo do texto dos rótulos do eixo Y.                                 |
-| `yAxisLabelFormatter` | `String Function(double value)?`  | Função para formatar os valores exibidos no eixo Y.                    |
-| `xAxisLabelFormatter` | `String Function(dynamic label)?` | Função para formatar os rótulos exibidos no eixo X.                    |
-| `onBarTap`            | `void Function(BarChartData)?`    | Callback disparado ao tocar em uma barra específica.                   |
-| `barTooltipBuilder`   | `String Function(BarChartData)?`  | Função para personalizar o conteúdo do tooltip ao tocar na barra.      |
-| `yAxisMargin`         | `double`                          | Margem esquerda para exibição dos rótulos do eixo Y (padrão: `30`).    |
-| `xAxisMargin`         | `double`                          | Margem inferior para os rótulos do eixo X (padrão: `30`).              |
+| Property              | Type                              | Description                                                         |
+| --------------------- | --------------------------------- | ------------------------------------------------------------------- |
+| `data`                | `List<BarChartData>`              | List of objects representing the data to be displayed in the chart. |
+| `spacing`             | `double`                          | Horizontal spacing between bars (default: `20`).                    |
+| `title`               | `String?`                         | Title of the chart.                                                 |
+| `titleStyle`          | `TextStyle?`                      | Text style for the chart title.                                     |
+| `xAxisLabelStyle`     | `TextStyle?`                      | Text style for the X-axis labels.                                   |
+| `yAxisLabelStyle`     | `TextStyle?`                      | Text style for the Y-axis labels.                                   |
+| `yAxisLabelFormatter` | `String Function(double value)?`  | Function to format the values displayed on the Y-axis.              |
+| `xAxisLabelFormatter` | `String Function(dynamic label)?` | Function to format the labels displayed on the X-axis.              |
+| `onBarTap`            | `void Function(BarChartData)?`    | Callback triggered when a specific bar is tapped.                   |
+| `barTooltipBuilder`   | `String Function(BarChartData)?`  | Function to customize the tooltip content when a bar is tapped.     |
+| `yAxisMargin`         | `double`                          | Left margin for displaying Y-axis labels (default: `30`).           |
+| `xAxisMargin`         | `double`                          | Bottom margin for X-axis labels (default: `30`).                    |
 
 ## LineChart
 
-### Exemplo
+### Example
 
 ![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart3.png)
 
@@ -126,31 +131,31 @@ Center(
     );
 ```
 
-| Propriedade           | Tipo                                                     | Descrição                                                                                                               |
-| --------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `series`              | `List<LineChartSeries>`                                  | Lista de séries (linhas) a serem desenhadas no gráfico. Cada série representa uma linha com seus próprios pontos e cor. |
-| `xAxis`               | `List<dynamic>`                                          | Obrigatório. Lista de rótulos do eixo X. Define a quantidade de pontos visíveis e seus respectivos rótulos.             |
-| `spacing`             | `double`                                                 | Espaçamento horizontal entre os pontos da linha (padrão: `20`).                                                         |
-| `title`               | `String?`                                                | Título do gráfico.                                                                                                      |
-| `titleStyle`          | `TextStyle?`                                             | Estilo do título do gráfico.                                                                                            |
-| `xAxisLabelStyle`     | `TextStyle?`                                             | Estilo dos rótulos no eixo X.                                                                                           |
-| `yAxisLabelStyle`     | `TextStyle?`                                             | Estilo dos rótulos no eixo Y.                                                                                           |
-| `yAxisLabelFormatter` | `String Function(double value)?`                         | Função para formatar os valores do eixo Y.                                                                              |
-| `xAxisLabelFormatter` | `String Function(dynamic label)?`                        | Função para formatar os rótulos do eixo X.                                                                              |
-| `onPointTap`          | `void Function(LineChartData)?`                          | Callback disparado ao tocar em um ponto da linha.                                                                       |
-| `yAxisMargin`         | `double`                                                 | Margem à esquerda para rótulos do eixo Y (padrão: `30`).                                                                |
-| `xAxisMargin`         | `double`                                                 | Margem inferior para rótulos do eixo X (padrão: `30`).                                                                  |
-| `showDots`            | `bool`                                                   | Exibe ou oculta os pontos nos vértices das linhas (padrão: `true`).                                                     |
-| `showGrid`            | `bool`                                                   | Exibe ou oculta a grade de fundo (padrão: `true`).                                                                      |
-| `lineTooltipBuilder`  | `String Function(LineChartSeries serie, LineChartData)?` | Função para personalizar o conteúdo do tooltip ao tocar em um ponto.                                                    |
-| `dotRadius`           | `double`                                                 | Define o raio dos pontos visíveis (se `showDots` for `true`) (padrão: `4.0`).                                           |
-| `strokeWidth`         | `double`                                                 | Espessura da linha desenhada no gráfico (padrão: `2.0`).                                                                |
-| `yMin`                | `double?`                                                | Valor mínimo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
-| `yMax`                | `double?`                                                | Valor máximo opcional para o eixo Y. Se não for definido, será calculado automaticamente com base nos dados.            |
+| Property              | Type                                                      | Description                                                                                                   |
+| --------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `series`              | `List<LineChartSeries>`                                   | List of series (lines) to be drawn in the chart. Each series represents a line with its own points and color. |
+| `xAxis`               | `List<dynamic>`                                           | Required. List of X-axis labels. Defines the number of visible points and their respective labels.            |
+| `spacing`             | `double`                                                  | Horizontal spacing between line points (default: `20`).                                                       |
+| `title`               | `String?`                                                 | Title of the chart.                                                                                           |
+| `titleStyle`          | `TextStyle?`                                              | Style for the chart title.                                                                                    |
+| `xAxisLabelStyle`     | `TextStyle?`                                              | Style for the X-axis labels.                                                                                  |
+| `yAxisLabelStyle`     | `TextStyle?`                                              | Style for the Y-axis labels.                                                                                  |
+| `yAxisLabelFormatter` | `String Function(double value)?`                          | Function to format Y-axis values.                                                                             |
+| `xAxisLabelFormatter` | `String Function(dynamic label)?`                         | Function to format X-axis labels.                                                                             |
+| `onPointTap`          | `void Function(LineChartData)?`                           | Callback triggered when a point on the line is tapped.                                                        |
+| `yAxisMargin`         | `double`                                                  | Left margin for Y-axis labels (default: `30`).                                                                |
+| `xAxisMargin`         | `double`                                                  | Bottom margin for X-axis labels (default: `30`).                                                              |
+| `showDots`            | `bool`                                                    | Show or hide dots at the vertices of the lines (default: `true`).                                             |
+| `showGrid`            | `bool`                                                    | Show or hide background grid (default: `true`).                                                               |
+| `lineTooltipBuilder`  | `String Function(LineChartSeries series, LineChartData)?` | Function to customize tooltip content when a point is tapped.                                                 |
+| `dotRadius`           | `double`                                                  | Radius of visible dots (if `showDots` is `true`) (default: `4.0`).                                            |
+| `strokeWidth`         | `double`                                                  | Stroke width of the line drawn on the chart (default: `2.0`).                                                 |
+| `yMin`                | `double?`                                                 | Optional minimum value for the Y-axis. If not set, it will be automatically calculated based on the data.     |
+| `yMax`                | `double?`                                                 | Optional maximum value for the Y-axis. If not set, it will be automatically calculated based on the data.     |
 
 ## PieChart
 
-### Exemplo
+### Example
 
 ![PieChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/pie_chart.jpg)
 
@@ -176,30 +181,63 @@ Center(
     );
 ```
 
-| Parâmetro           | Tipo                             | Descrição                                                         |
-| ------------------- | -------------------------------- | ----------------------------------------------------------------- |
-| `data`              | `List<PieChartData>`             | Lista com os dados do gráfico.                                    |
-| `title`             | `String?`                        | Título do gráfico.                                                |
-| `titleStyle`        | `TextStyle?`                     | Estilo do texto do título.                                        |
-| `aspectRatio`       | `double`                         | Relação largura/altura do gráfico. (padrão: `3.0`).               |
-| `legendPosition`    | `LegendPosition`                 | Posição da legenda: `top`, `bottom`. (padrão: `bottom`).          |
-| `pieTooltipBuilder` | `String Function(PieChartData)?` | Função para personalizar o conteúdo do tooltip ao passar o mouse. |
+| Property            | Type                             | Description                                              |
+| ------------------- | -------------------------------- | -------------------------------------------------------- |
+| `data`              | `List<PieChartData>`             | List containing the chart data.                          |
+| `title`             | `String?`                        | Title of the chart.                                      |
+| `titleStyle`        | `TextStyle?`                     | Text style for the chart title.                          |
+| `aspectRatio`       | `double`                         | Width/height ratio of the chart. (default: `3.0`).       |
+| `legendPosition`    | `LegendPosition`                 | Legend position: `top`, `bottom`. (default: `bottom`).   |
+| `pieTooltipBuilder` | `String Function(PieChartData)?` | Function to customize tooltip content on hover or touch. |
 
-## 📁 Exemplos
+## RadialBarChart
 
-Para exemplos de uso completo com gráficos reais, consulte o diretório /example no repositório.
-Lá você encontrará demonstrações práticas de todos os gráficos com suas personalizações e interações.
+### Example
 
-## 📮 Contribuição
+![RadialBarChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/radial_chart.png)
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request. 😊
+```yaml
+Center(
+      child: RadialBarChart(
+        data: [
+          RadialBarData(value: 40, color: Colors.blue, label: 'Azul'),
+          RadialBarData(value: 30, color: Colors.green, label: 'Verde'),
+          RadialBarData(value: 20, color: Colors.orange, label: 'Laranja'),
+          RadialBarData(value: 60, color: Colors.red, label: 'Vermelho'),
+        ],
+        centerTextBuilder: (data) => '${data.label}\n${data.value} unidades',
+        centerTextStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        aspectRatio: 1.5,
+      );
+```
 
-## 📝 Licença
+| Property            | Type                              | Description                                                              |
+| ------------------- | --------------------------------- | ------------------------------------------------------------------------ |
+| `data`              | `List<RadialBarData>`             | List of objects that represent the chart values.                         |
+| `legendPosition`    | `LegendPosition`                  | Legend position: `top` or `bottom`. Defaults to `bottom`.                |
+| `centerTextBuilder` | `String Function(RadialBarData)?` | Optional function to customize the center text based on hovered segment. |
+| `centerTextStyle`   | `TextStyle?`                      | Text style for the center label.                                         |
+| `aspectRatio`       | `double`                          | Aspect ratio of the chart. Defaults to `2.0`.                            |
 
-Distribuído sob a licença MIT.
-Veja o arquivo LICENSE para mais informações.
+## 📁 Examples
 
-## 👨‍💻 Autor
+For full usage examples with real charts, check out the `/example` directory in this repository.  
+There you'll find practical demonstrations of all chart types with customizations and interactions.
 
-Desenvolvido por Rômulo Rodrigues.
-Dúvidas ou sugestões? Abra uma issue.
+## 📮 Contribution
+
+Contributions are welcome!  
+Feel free to open an issue or submit a pull request. 😊
+
+## 📝 License
+
+Distributed under the MIT License.  
+See the LICENSE file for more information.
+
+## 👨‍💻 Author
+
+Developed by Rômulo Rodrigues.  
+Questions or suggestions? Open an issue.
