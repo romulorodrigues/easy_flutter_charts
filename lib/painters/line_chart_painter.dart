@@ -132,7 +132,6 @@ class LineChartPainter extends CustomPainter {
           ? rawLabel.map((e) => e.toString()).toList()
           : [formatted];
 
-      double totalHeight = 0;
       final textPainters = <TextPainter>[];
 
       for (final line in lines) {
@@ -142,7 +141,6 @@ class LineChartPainter extends CustomPainter {
           textDirection: TextDirection.ltr,
         );
         tp.layout();
-        totalHeight += tp.height;
         textPainters.add(tp);
       }
 

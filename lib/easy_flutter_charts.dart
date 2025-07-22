@@ -8,3 +8,5 @@ export 'models/pie_chart_data.dart';
 export 'widgets/pie_chart.dart';
 export 'models/radial_bar_chart_data.dart';
 export 'widgets/radial_bar_chart.dart';
+export 'models/area_chart_data.dart';
+export 'widgets/area_chart.dart';

@@ -1,3 +1,9 @@
+## 1.2.0
+
+### Added
+
+- New `AreaChart` component for visualizing data with smooth filled curves and multiple series support.
+
 ## 1.1.0
 
 ### Added

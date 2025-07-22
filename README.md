@@ -1,6 +1,6 @@
 # easy_flutter_charts
 
-easy_flutter_charts is a simple, lightweight, and customizable library for creating charts in Flutter. It provides chart components ideal for dashboards, statistical visualizations, and more. You can integrate elegant and responsive data visualizations in just a few minutes.
+Is a simple, lightweight, and customizable library for creating charts in Flutter. It provides chart components ideal for dashboards, statistical visualizations, and more. You can integrate elegant and responsive data visualizations in just a few minutes.
 
 ## 📦 Installation
 
@@ -11,11 +11,13 @@ dependencies:
   easy_flutter_charts: latest version
 ```
 
+## Types of charts
+
+![Graphs](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/graphs.png)
+
 ## BarChart
 
 ### Example
-
-![BarChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/bar_chart.jpg)
 
 ```yaml
 Center(
@@ -64,8 +66,6 @@ Center(
 ## LineChart
 
 ### Example
-
-![LineChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/line_chart3.png)
 
 ```yaml
 Center(
@@ -157,8 +157,6 @@ Center(
 
 ### Example
 
-![PieChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/pie_chart.jpg)
-
 ```yaml
 Center(
       child: PieChart(
@@ -194,8 +192,6 @@ Center(
 
 ### Example
 
-![RadialBarChart](https://raw.githubusercontent.com/romulorodrigues/easy_flutter_charts/main/screenshots/radial_chart.png)
-
 ```yaml
 Center(
       child: RadialBarChart(
@@ -221,6 +217,78 @@ Center(
 | `centerTextBuilder` | `String Function(RadialBarData)?` | Optional function to customize the center text based on hovered segment. |
 | `centerTextStyle`   | `TextStyle?`                      | Text style for the center label.                                         |
 | `aspectRatio`       | `double`                          | Aspect ratio of the chart. Defaults to `2.0`.                            |
+
+## AreaChart
+
+### Example
+
+```yaml
+Center(
+      child: SizedBox(
+        height: 300,
+        width: 380,
+        child: AreaChart(
+          title: 'Lucro Mensal por Região',
+          titleStyle: TextStyle(fontWeight: FontWeight.bold),
+          xAxis: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
+          xAxisLabelStyle: const TextStyle(fontSize: 10, color: Colors.black),
+          xAxisLabelFormatter: (label) => label.toString().toUpperCase(),
+          series: [
+            AreaChartSeries(
+              name: 'Norte',
+              color: Colors.blue,
+              data: [
+                AreaChartData(label: 'Janeiro', value: 10),
+                AreaChartData(label: 'Fevereiro', value: 45.5),
+                AreaChartData(label: 'Março', value: 55.5),
+                AreaChartData(label: 'Abril', value: 7),
+                AreaChartData(label: 'Maio', value: 10)
+              ],
+            ),
+            AreaChartSeries(
+              name: 'Sul',
+              color: Colors.green,
+              data: [
+                AreaChartData(label: 'Janeiro', value: 20),
+                AreaChartData(label: 'Fevereiro', value: 23),
+                AreaChartData(label: 'Março', value: 32),
+                AreaChartData(label: 'Abril', value: 12),
+                AreaChartData(label: 'Maio', value: 20)
+              ],
+            ),
+            AreaChartSeries(
+              name: 'Nordeste',
+              color: Colors.red,
+              data: [
+                AreaChartData(label: 'Janeiro', value: 30),
+                AreaChartData(label: 'Fevereiro', value: 43),
+                AreaChartData(label: 'Março', value: 52),
+                AreaChartData(label: 'Abril', value: 62),
+                AreaChartData(label: 'Maio', value: 30)
+              ],
+            ),
+          ],
+          // tooltipBuilder: (serie, data) =>
+          //     '${serie.name} - ${data.label}: R\$ ${data.value.toStringAsFixed(2)}',
+        ),
+      ),
+    );
+```
+
+| Property              | Type                                                          | Description                                          |
+| --------------------- | ------------------------------------------------------------- | ---------------------------------------------------- |
+| `series`              | `List<AreaChartSeries>`                                       | The data series to be displayed in the area chart.   |
+| `xAxis`               | `List<dynamic>`                                               | The labels or values for the x-axis.                 |
+| `title`               | `String?`                                                     | The chart's title.                                   |
+| `titleStyle`          | `TextStyle?`                                                  | Style for the chart title.                           |
+| `xAxisMargin`         | `double`                                                      | Space reserved for x-axis labels. (default is `30`). |
+| `yAxisMargin`         | `double`                                                      | Space reserved for y-axis labels. (default is `30`). |
+| `tooltipBuilder`      | `String Function(AreaChartSeries serie, AreaChartData data)?` | Custom builder for the tooltip content.              |
+| `xAxisLabelStyle`     | `TextStyle?`                                                  | Style for the x-axis labels.                         |
+| `xAxisLabelFormatter` | `String Function(dynamic label)?`                             | Function to format the x-axis labels.                |
+| `yAxisLabelStyle`     | `TextStyle?`                                                  | Style for the y-axis labels.                         |
+| `yAxisLabelFormatter` | `String Function(double value)?`                              | Function to format the y-axis labels.                |
+| `legendPosition`      | `LegendPosition?`                                             | Position of the legend (`top`, `bottom`).            |
 
 ## 📁 Examples
 
