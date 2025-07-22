@@ -1,3 +1,9 @@
+## 1.2.1
+
+### Changed
+
+- Updated screenshots in the README and documentation to reflect the latest UI changes and chart improvements.
+
 ## 1.2.0
 
 ### Added
