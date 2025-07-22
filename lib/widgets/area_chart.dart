@@ -20,7 +20,7 @@ class AreaChart extends StatefulWidget {
   final LegendPosition? legendPosition;
 
   const AreaChart({
-    Key? key,
+    super.key,
     required this.series,
     required this.xAxis,
     this.title,
@@ -33,7 +33,7 @@ class AreaChart extends StatefulWidget {
     this.yAxisLabelStyle,
     this.yAxisLabelFormatter,
     this.legendPosition = LegendPosition.bottom,
-  }) : super(key: key);
+  });
 
   @override
   State<AreaChart> createState() => _AreaChartState();
@@ -133,8 +133,9 @@ class _AreaChartState extends State<AreaChart> {
                               tooltipHeight;
 
                           final left = () {
-                            if (dx + tooltipWidth > constraints.maxWidth)
+                            if (dx + tooltipWidth > constraints.maxWidth) {
                               return maxLeft;
+                            }
                             if (dx < 0) return 0.0;
                             return dx;
                           }();

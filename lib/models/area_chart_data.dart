@@ -1,6 +1,6 @@
 class AreaChartData {
   final double value;
-  final dynamic? label;
+  final dynamic label;
 
   AreaChartData({
     required this.value,
